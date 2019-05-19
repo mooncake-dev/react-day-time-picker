@@ -9,7 +9,7 @@
     "start": "rimraf .cache dev && parcel dev.html --out-dir dev",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:format": "npm run lint -- --fix",
-    "build": "parcel build dev.html"
+    "build": "parcel build index.html"
   },
   "repository": {
     "type": "git",
