@@ -20,6 +20,6 @@ function App() {
   );
 }
 
-const target = document.getElementById('dev-app');
+const target = document.getElementById('demo-app');
 
 render(<App />, target);
