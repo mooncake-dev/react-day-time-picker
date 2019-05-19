@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "rimraf .cache dev && parcel dev.html --out-dir dev",
+    "start": "rimraf .cache dev && parcel index.html --out-dir dev",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:format": "npm run lint -- --fix",
     "build": "parcel build index.html"
