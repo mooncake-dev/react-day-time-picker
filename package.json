@@ -1,0 +1,55 @@
+{
+  "name": "react-date-time-picker",
+  "version": "1.0.0",
+  "description": "A React component to pick a date and time (useful for scheduling).",
+  "main": "",
+  "scripts": {
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "start": "rimraf .cache dev && parcel dev.html --out-dir dev",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "lint:format": "npm run lint -- --fix",
+    "build": "parcel build dev.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mooncake-dev/react-date-time-picker.git"
+  },
+  "keywords": [],
+  "author": "Daniël Illouz <daniel.illouz@me.com> (https://www.danillouz.dev/)",
+  "contributors": [
+    "Daniël Illouz <daniel.illouz@me.com>",
+    "Dinos Theodorou <dinostheo@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mooncake-dev/react-date-time-picker/issues"
+  },
+  "homepage": "https://github.com/mooncake-dev/react-date-time-picker#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-import": "^1.11.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
+    "jest": "^24.8.0",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.17.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "rimraf": "^2.6.3"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.18",
+    "@fortawesome/free-solid-svg-icons": "^5.8.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "date-fns": "^1.30.1",
+    "styled-components": "^4.2.0"
+  }
+}
