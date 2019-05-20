@@ -10,7 +10,7 @@ const Container = styled.div`
   text-align: center;
   box-shadow: 0 2px 4px #00000018;
 
-  @media (max-width: 700px) {
+  @media (max-width: 460px) {
     width: 100%;
     border-radius: 0;
   }
