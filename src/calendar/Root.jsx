@@ -85,7 +85,7 @@ function Root() {
   };
 
   // TODO: pass validator as prop
-  const validator = date => date >= new Date();
+  const validator = date => date.getDate() >= new Date().getDate();
 
   return (
     <Grid>
