@@ -16,6 +16,8 @@ import {
 
 import { Calendar, FakeCalendar } from './Calendar';
 
+import Popup from './Popup';
+
 function _renderDays(month) {
   const start = dateFns.startOfMonth(month);
   const end = dateFns.endOfMonth(month);
@@ -38,7 +40,9 @@ function Root() {
   // TODO: pass date as prop
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
+  const [selectedDate, setSelectedDate] = useState(null);
   const [animation, setAnimation] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
 
   const [startDay, days] = _renderDays(month);
   const [fakeStartDay, fakeDays] = _renderDays(fakeMonth);
@@ -81,99 +85,111 @@ function Root() {
       return;
     }
 
-    console.log('selected date: ', selectedDate);
+    setSelectedDate(selectedDate);
+    setShowPopup(true);
   };
+
+  const closePopup = () => setShowPopup(false);
 
   // TODO: pass validator as prop
   const validator = date => date.getDate() >= new Date().getDate();
 
   return (
-    <Grid>
-      <MonthYear>
-        <MonthPicker>
-          <PrevMonth disabled={isAnimating} onClick={handlePrevMonth}>
-            <PrevIcon />
-          </PrevMonth>
+    <Wrapper>
+      {showPopup && (
+        <Popup handleClose={closePopup} selectedDate={selectedDate} />
+      )}
 
-          <Wrapper>
-            <CurrentMonth animation={animation}>
-              {dateFns.format(month, 'MMMM YYYY')}
-            </CurrentMonth>
+      <Grid>
+        <MonthYear>
+          <MonthPicker>
+            <PrevMonth disabled={isAnimating} onClick={handlePrevMonth}>
+              <PrevIcon />
+            </PrevMonth>
 
-            <FakeCurrentMonth animation={animation}>
-              {dateFns.format(fakeMonth, 'MMMM YYYY')}
-            </FakeCurrentMonth>
-          </Wrapper>
+            <Wrapper>
+              <CurrentMonth animation={animation}>
+                {dateFns.format(month, 'MMMM YYYY')}
+              </CurrentMonth>
 
-          <NextMonth disabled={isAnimating} onClick={handleNextMonth}>
-            <NextIcon />
-          </NextMonth>
-        </MonthPicker>
-      </MonthYear>
+              <FakeCurrentMonth animation={animation}>
+                {dateFns.format(fakeMonth, 'MMMM YYYY')}
+              </FakeCurrentMonth>
+            </Wrapper>
 
-      <Wrapper>
-        <Calendar animation={animation} onAnimationEnd={handleAnimationEnd}>
-          <DaysOfWeek>
-            <WeekDays>
-              {WEEK_DAYS.map(weekDay => {
-                return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
-              })}
-            </WeekDays>
-          </DaysOfWeek>
+            <NextMonth disabled={isAnimating} onClick={handleNextMonth}>
+              <NextIcon />
+            </NextMonth>
+          </MonthPicker>
+        </MonthYear>
 
-          <MonthDays>
-            {days.map(day => {
-              const formatted = dateFns.format(day, 'D');
-              const isSameMonth = dateFns.isSameMonth(day, startDay);
-              const isToday = dateFns.isToday(day);
-              const isValid = validator ? validator(day) : true;
-              return (
-                <MonthDay
-                  key={day}
-                  disabled={!isSameMonth}
-                  isValid={isValid}
-                  isToday={isToday}
-                  onClick={() => isValid && handleSelectDate(day)}
-                >
-                  {formatted}
-                </MonthDay>
-              );
-            })}
-          </MonthDays>
-        </Calendar>
+        <Wrapper>
+          <Calendar animation={animation} onAnimationEnd={handleAnimationEnd}>
+            <DaysOfWeek>
+              <WeekDays>
+                {WEEK_DAYS.map(weekDay => {
+                  return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
+                })}
+              </WeekDays>
+            </DaysOfWeek>
 
-        <FakeCalendar animation={animation}>
-          <DaysOfWeek>
-            <WeekDays>
-              {WEEK_DAYS.map(weekDay => {
-                return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
-              })}
-            </WeekDays>
-          </DaysOfWeek>
-
-          <DaysOfMonth>
             <MonthDays>
-              {fakeDays.map(fakeDay => {
-                const formatted = dateFns.format(fakeDay, 'D');
-                const isSameMonth = dateFns.isSameMonth(fakeDay, fakeStartDay);
-                const isToday = dateFns.isToday(fakeDay);
-                const isValid = validator ? validator(fakeDay) : true;
+              {days.map(day => {
+                const formatted = dateFns.format(day, 'D');
+                const isSameMonth = dateFns.isSameMonth(day, startDay);
+                const isToday = dateFns.isToday(day);
+                const isValid = validator ? validator(day) : true;
                 return (
                   <MonthDay
-                    key={fakeDay}
+                    key={day}
                     disabled={!isSameMonth}
                     isValid={isValid}
                     isToday={isToday}
+                    onClick={() => isValid && handleSelectDate(day)}
                   >
                     {formatted}
                   </MonthDay>
                 );
               })}
             </MonthDays>
-          </DaysOfMonth>
-        </FakeCalendar>
-      </Wrapper>
-    </Grid>
+          </Calendar>
+
+          <FakeCalendar animation={animation}>
+            <DaysOfWeek>
+              <WeekDays>
+                {WEEK_DAYS.map(weekDay => {
+                  return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
+                })}
+              </WeekDays>
+            </DaysOfWeek>
+
+            <DaysOfMonth>
+              <MonthDays>
+                {fakeDays.map(fakeDay => {
+                  const formatted = dateFns.format(fakeDay, 'D');
+                  const isSameMonth = dateFns.isSameMonth(
+                    fakeDay,
+                    fakeStartDay
+                  );
+                  const isToday = dateFns.isToday(fakeDay);
+                  const isValid = validator ? validator(fakeDay) : true;
+                  return (
+                    <MonthDay
+                      key={fakeDay}
+                      disabled={!isSameMonth}
+                      isValid={isValid}
+                      isToday={isToday}
+                    >
+                      {formatted}
+                    </MonthDay>
+                  );
+                })}
+              </MonthDays>
+            </DaysOfMonth>
+          </FakeCalendar>
+        </Wrapper>
+      </Grid>
+    </Wrapper>
   );
 }
 
