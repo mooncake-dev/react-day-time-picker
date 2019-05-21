@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
+import generateDays from './generate-days';
+
 import { Grid, Wrapper, MonthYear, DaysOfWeek, DaysOfMonth } from './Layout';
 import { WeekDays, WeekDay, WEEK_DAYS } from './WeekDays';
 import { MonthDays, MonthDay } from './MonthDays';
@@ -17,32 +19,14 @@ import {
 
 import { Calendar, FakeCalendar } from './Calendar';
 
-function _renderDays(month) {
-  const start = dateFns.startOfMonth(month);
-  const end = dateFns.endOfMonth(month);
-
-  const firstDay = dateFns.startOfWeek(start);
-  const lastDay = dateFns.endOfWeek(end);
-
-  const days = [];
-  let day = firstDay;
-
-  while (day <= lastDay) {
-    days.push(day);
-    day = dateFns.addDays(day, 1);
-  }
-
-  return [start, days];
-}
-
 function Root({ setSelectedDate, setShowPopup }) {
   // TODO: pass date as prop
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
   const [animation, setAnimation] = useState('');
 
-  const [startDay, days] = _renderDays(month);
-  const [fakeStartDay, fakeDays] = _renderDays(fakeMonth);
+  const [startDay, days] = generateDays(month);
+  const [fakeStartDay, fakeDays] = generateDays(fakeMonth);
 
   const isAnimating = !!animation;
 
