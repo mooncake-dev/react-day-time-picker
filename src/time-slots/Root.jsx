@@ -13,14 +13,15 @@ function Root({ selectedDate, selectTime }) {
   const timeSlots = generateTimeSlots(selectedDate, slotSizeMinutes);
 
   // TODO: pass validator as prop
-  const validator = slotTime => {
-    const validTimes = [
-      new Date('Tue May 21 2019 14:15:00 GMT+0200').getTime(),
-      new Date('Tue May 21 2019 15:15:00 GMT+0200').getTime()
-    ];
-    const isValid = validTimes.includes(slotTime.getTime());
-    return isValid;
-  };
+  // const validator = slotTime => {
+  //   const validTimes = [
+  //     new Date('Tue May 21 2019 14:15:00 GMT+0200').getTime(),
+  //     new Date('Tue May 21 2019 15:15:00 GMT+0200').getTime()
+  //   ];
+  //   const isValid = validTimes.includes(slotTime.getTime());
+  //   return isValid;
+  // };
+  const validator = null;
 
   return (
     <List>
