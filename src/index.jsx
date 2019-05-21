@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import dateFns from 'date-fns';
 
 import Container from './Container';
 import Calendar from './calendar';
-import { PopupWrapper, Popup } from './Popup';
+import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
+import TimeSlots from './TimeSlots';
 
 function DateTimePicker() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -21,7 +23,15 @@ function DateTimePicker() {
         />
 
         {showPopup && (
-          <Popup handleClose={closePopup} selectedDate={selectedDate} />
+          <Popup handleClose={closePopup}>
+            <PopupHeader>
+              <p>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</p>
+
+              <PopupClose onClick={closePopup}>Go Back</PopupClose>
+            </PopupHeader>
+
+            <TimeSlots selectedDate={selectedDate} />
+          </Popup>
         )}
       </PopupWrapper>
     </Container>
