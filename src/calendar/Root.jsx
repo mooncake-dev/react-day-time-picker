@@ -92,7 +92,22 @@ function Root() {
   const closePopup = () => setShowPopup(false);
 
   // TODO: pass validator as prop
-  const validator = date => date.getDate() >= new Date().getDate();
+  // "day" is a Date Object that starts at "00:00:00" hours, e.g.:
+  // "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
+  const validator = day => {
+    const now = new Date();
+    const today = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      0,
+      0,
+      0
+    );
+
+    const isValid = day.getTime() >= today.getTime();
+    return isValid;
+  };
 
   return (
     <Wrapper>
