@@ -26,12 +26,92 @@ const ButtonLink = styled.a`
   }
 `;
 
+const List = styled.ul`
+  list-style: none;
+  margin: 1em 0 0 0;
+  padding: 0;
+  height: 450px;
+  overflow: auto;
+`;
+
+const ListItem = styled.li`
+  padding: 1em;
+  border: 1px solid;
+  margin: 0.5em 0;
+  opacity: ${props => (props.isValid ? 1 : 0.3)}
+
+  :hover {
+    cursor: ${props => (props.isValid ? 'pointer' : 'inherit')};
+    color: ${props => (props.isValid ? '#3a9ad9' : 'inherit')};
+  }
+`;
+
+function _renderTimeSlots(selectedDate, slotSizeMinutes) {
+  const isToday = dateFns.isToday(selectedDate);
+
+  let start = selectedDate;
+  if (isToday) {
+    const now = new Date();
+    const offsetHours = dateFns.getHours(now);
+
+    // "Pad" the start time with the amount of hours of the current time, to
+    // prevent rendering time slots of the past
+    start = dateFns.addHours(start, offsetHours);
+
+    // The start positions might still be in the past in terms of minutes
+    // So "pad" the start time with the slot size, to prevent rendering time
+    // slots of the past
+    while (start <= now) {
+      start = dateFns.addMinutes(start, slotSizeMinutes);
+    }
+  }
+
+  const end = dateFns.addDays(selectedDate, 1);
+
+  let slot = start;
+  let timeSlots = [];
+  while (slot < end) {
+    timeSlots.push(slot);
+    slot = dateFns.addMinutes(slot, slotSizeMinutes);
+  }
+
+  return timeSlots;
+}
+
 function Popup({ handleClose, selectedDate }) {
+  // TODO: pass slotSizeMinutes as prop
+  const slotSizeMinutes = 15;
+
+  const timeSlots = _renderTimeSlots(selectedDate, slotSizeMinutes);
+
+  // TODO: pass validator as prop
+  const validator = slotTime => {
+    const validTimes = [
+      new Date('Tue May 21 2019 14:15:00 GMT+0200').getTime(),
+      new Date('Tue May 21 2019 15:15:00 GMT+0200').getTime()
+    ];
+    const isValid = validTimes.includes(slotTime.getTime());
+    return isValid;
+  };
+
   return (
     <Container>
       <p>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</p>
 
       <ButtonLink onClick={handleClose}>Go Back</ButtonLink>
+
+      <div>
+        <List>
+          {timeSlots.map(slot => {
+            const isValid = validator ? validator(slot) : true;
+            return (
+              <ListItem key={slot} isValid={isValid}>
+                {dateFns.format(slot, 'HH:mm')}
+              </ListItem>
+            );
+          })}
+        </List>
+      </div>
     </Container>
   );
 }
