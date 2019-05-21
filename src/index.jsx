@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import dateFns from 'date-fns';
 
 import Container from './Container';
-import Calendar from './calendar';
 import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
-import TimeSlots from './TimeSlots';
+
+import Calendar from './calendar';
+import TimeSlots from './time-slots';
 
 function DateTimePicker() {
   const [selectedDate, setSelectedDate] = useState(null);

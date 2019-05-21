@@ -1,29 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import dateFns from 'date-fns';
 
 import generateTimeSlots from './generate-time-slots';
 
-const List = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0 1em;
-  height: 390px;
-  overflow: auto;
-`;
-
-const ListItem = styled.li`
-  padding: 1em;
-  border: 1px solid;
-  margin: 1em 0;
-  opacity: ${props => (props.isValid ? 1 : 0.3)}
-
-  :hover {
-    cursor: ${props => (props.isValid ? 'pointer' : 'inherit')};
-    color: ${props => (props.isValid ? '#3a9ad9' : 'inherit')};
-  }
-`;
+import { List, ListItem } from './List';
 
 function Root({ selectedDate }) {
   // TODO: pass slotSizeMinutes as prop
