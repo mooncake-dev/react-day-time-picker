@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
 import { Grid, Wrapper, MonthYear, DaysOfWeek, DaysOfMonth } from './Layout';
@@ -15,8 +16,6 @@ import {
 } from './MonthPicker';
 
 import { Calendar, FakeCalendar } from './Calendar';
-
-import Popup from './Popup';
 
 function _renderDays(month) {
   const start = dateFns.startOfMonth(month);
@@ -36,13 +35,11 @@ function _renderDays(month) {
   return [start, days];
 }
 
-function Root() {
+function Root({ setSelectedDate, setShowPopup }) {
   // TODO: pass date as prop
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
-  const [selectedDate, setSelectedDate] = useState(null);
   const [animation, setAnimation] = useState('');
-  const [showPopup, setShowPopup] = useState(false);
 
   const [startDay, days] = _renderDays(month);
   const [fakeStartDay, fakeDays] = _renderDays(fakeMonth);
@@ -89,8 +86,6 @@ function Root() {
     setShowPopup(true);
   };
 
-  const closePopup = () => setShowPopup(false);
-
   // TODO: pass validator as prop
   // "day" is a Date Object that starts at "00:00:00" hours, e.g.:
   // "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
@@ -110,102 +105,98 @@ function Root() {
   };
 
   return (
-    <Wrapper>
-      {showPopup && (
-        <Popup handleClose={closePopup} selectedDate={selectedDate} />
-      )}
+    <Grid>
+      <MonthYear>
+        <MonthPicker>
+          <PrevMonth disabled={isAnimating} onClick={handlePrevMonth}>
+            <PrevIcon />
+          </PrevMonth>
 
-      <Grid>
-        <MonthYear>
-          <MonthPicker>
-            <PrevMonth disabled={isAnimating} onClick={handlePrevMonth}>
-              <PrevIcon />
-            </PrevMonth>
+          <Wrapper>
+            <CurrentMonth animation={animation}>
+              {dateFns.format(month, 'MMMM YYYY')}
+            </CurrentMonth>
 
-            <Wrapper>
-              <CurrentMonth animation={animation}>
-                {dateFns.format(month, 'MMMM YYYY')}
-              </CurrentMonth>
+            <FakeCurrentMonth animation={animation}>
+              {dateFns.format(fakeMonth, 'MMMM YYYY')}
+            </FakeCurrentMonth>
+          </Wrapper>
 
-              <FakeCurrentMonth animation={animation}>
-                {dateFns.format(fakeMonth, 'MMMM YYYY')}
-              </FakeCurrentMonth>
-            </Wrapper>
+          <NextMonth disabled={isAnimating} onClick={handleNextMonth}>
+            <NextIcon />
+          </NextMonth>
+        </MonthPicker>
+      </MonthYear>
 
-            <NextMonth disabled={isAnimating} onClick={handleNextMonth}>
-              <NextIcon />
-            </NextMonth>
-          </MonthPicker>
-        </MonthYear>
+      <Wrapper>
+        <Calendar animation={animation} onAnimationEnd={handleAnimationEnd}>
+          <DaysOfWeek>
+            <WeekDays>
+              {WEEK_DAYS.map(weekDay => {
+                return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
+              })}
+            </WeekDays>
+          </DaysOfWeek>
 
-        <Wrapper>
-          <Calendar animation={animation} onAnimationEnd={handleAnimationEnd}>
-            <DaysOfWeek>
-              <WeekDays>
-                {WEEK_DAYS.map(weekDay => {
-                  return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
-                })}
-              </WeekDays>
-            </DaysOfWeek>
+          <MonthDays>
+            {days.map(day => {
+              const formatted = dateFns.format(day, 'D');
+              const isSameMonth = dateFns.isSameMonth(day, startDay);
+              const isToday = dateFns.isToday(day);
+              const isValid = validator ? validator(day) : true;
+              return (
+                <MonthDay
+                  key={day}
+                  disabled={!isSameMonth}
+                  isValid={isValid}
+                  isToday={isToday}
+                  onClick={() => isValid && handleSelectDate(day)}
+                >
+                  {formatted}
+                </MonthDay>
+              );
+            })}
+          </MonthDays>
+        </Calendar>
 
+        <FakeCalendar animation={animation}>
+          <DaysOfWeek>
+            <WeekDays>
+              {WEEK_DAYS.map(weekDay => {
+                return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
+              })}
+            </WeekDays>
+          </DaysOfWeek>
+
+          <DaysOfMonth>
             <MonthDays>
-              {days.map(day => {
-                const formatted = dateFns.format(day, 'D');
-                const isSameMonth = dateFns.isSameMonth(day, startDay);
-                const isToday = dateFns.isToday(day);
-                const isValid = validator ? validator(day) : true;
+              {fakeDays.map(fakeDay => {
+                const formatted = dateFns.format(fakeDay, 'D');
+                const isSameMonth = dateFns.isSameMonth(fakeDay, fakeStartDay);
+                const isToday = dateFns.isToday(fakeDay);
+                const isValid = validator ? validator(fakeDay) : true;
                 return (
                   <MonthDay
-                    key={day}
+                    key={fakeDay}
                     disabled={!isSameMonth}
                     isValid={isValid}
                     isToday={isToday}
-                    onClick={() => isValid && handleSelectDate(day)}
                   >
                     {formatted}
                   </MonthDay>
                 );
               })}
             </MonthDays>
-          </Calendar>
-
-          <FakeCalendar animation={animation}>
-            <DaysOfWeek>
-              <WeekDays>
-                {WEEK_DAYS.map(weekDay => {
-                  return <WeekDay key={weekDay}>{weekDay}</WeekDay>;
-                })}
-              </WeekDays>
-            </DaysOfWeek>
-
-            <DaysOfMonth>
-              <MonthDays>
-                {fakeDays.map(fakeDay => {
-                  const formatted = dateFns.format(fakeDay, 'D');
-                  const isSameMonth = dateFns.isSameMonth(
-                    fakeDay,
-                    fakeStartDay
-                  );
-                  const isToday = dateFns.isToday(fakeDay);
-                  const isValid = validator ? validator(fakeDay) : true;
-                  return (
-                    <MonthDay
-                      key={fakeDay}
-                      disabled={!isSameMonth}
-                      isValid={isValid}
-                      isToday={isToday}
-                    >
-                      {formatted}
-                    </MonthDay>
-                  );
-                })}
-              </MonthDays>
-            </DaysOfMonth>
-          </FakeCalendar>
-        </Wrapper>
-      </Grid>
-    </Wrapper>
+          </DaysOfMonth>
+        </FakeCalendar>
+      </Wrapper>
+    </Grid>
   );
 }
+
+Root.propTypes = {
+  setSelectedDate: PropTypes.func.isRequired,
+  setShowPopup: PropTypes.func.isRequired
+};
 
 export default Root;

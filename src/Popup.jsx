@@ -17,6 +17,12 @@ const Container = styled.div`
   font-size: 1.1em;
 `;
 
+const Header = styled.header`
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: 0 4px 3px -4px #00000018;
+  padding: 0 0 1em 0;
+`;
+
 const ButtonLink = styled.a`
   color: #3a9ad9;
   text-decoration: underline;
@@ -28,16 +34,16 @@ const ButtonLink = styled.a`
 
 const List = styled.ul`
   list-style: none;
-  margin: 1em 0 0 0;
-  padding: 0;
-  height: 450px;
+  margin: 0;
+  padding: 0 1em;
+  height: 390px;
   overflow: auto;
 `;
 
 const ListItem = styled.li`
   padding: 1em;
   border: 1px solid;
-  margin: 0.5em 0;
+  margin: 1em 0;
   opacity: ${props => (props.isValid ? 1 : 0.3)}
 
   :hover {
@@ -78,7 +84,11 @@ function _renderTimeSlots(selectedDate, slotSizeMinutes) {
   return timeSlots;
 }
 
-function Popup({ handleClose, selectedDate }) {
+export const PopupWrapper = styled.div`
+  position: relative;
+`;
+
+export function Popup({ handleClose, selectedDate }) {
   // TODO: pass slotSizeMinutes as prop
   const slotSizeMinutes = 15;
 
@@ -96,22 +106,22 @@ function Popup({ handleClose, selectedDate }) {
 
   return (
     <Container>
-      <p>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</p>
+      <Header>
+        <p>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</p>
 
-      <ButtonLink onClick={handleClose}>Go Back</ButtonLink>
+        <ButtonLink onClick={handleClose}>Go Back</ButtonLink>
+      </Header>
 
-      <div>
-        <List>
-          {timeSlots.map(slot => {
-            const isValid = validator ? validator(slot) : true;
-            return (
-              <ListItem key={slot} isValid={isValid}>
-                {dateFns.format(slot, 'HH:mm')}
-              </ListItem>
-            );
-          })}
-        </List>
-      </div>
+      <List>
+        {timeSlots.map(slot => {
+          const isValid = validator ? validator(slot) : true;
+          return (
+            <ListItem key={slot} isValid={isValid}>
+              {dateFns.format(slot, 'HH:mm')}
+            </ListItem>
+          );
+        })}
+      </List>
     </Container>
   );
 }
@@ -120,5 +130,3 @@ Popup.propTypes = {
   handleClose: PropTypes.func.isRequired,
   selectedDate: PropTypes.instanceOf(Date)
 };
-
-export default Popup;
