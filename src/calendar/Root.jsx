@@ -19,7 +19,7 @@ import {
 
 import { Calendar, FakeCalendar } from './Calendar';
 
-function Root({ setSelectedDate, setShowPopup }) {
+function Root({ selectDate }) {
   // TODO: pass date as prop
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
@@ -66,8 +66,7 @@ function Root({ setSelectedDate, setShowPopup }) {
       return;
     }
 
-    setSelectedDate(selectedDate);
-    setShowPopup(true);
+    selectDate(selectedDate);
   };
 
   // TODO: pass validator as prop
@@ -179,8 +178,7 @@ function Root({ setSelectedDate, setShowPopup }) {
 }
 
 Root.propTypes = {
-  setSelectedDate: PropTypes.func.isRequired,
-  setShowPopup: PropTypes.func.isRequired
+  selectDate: PropTypes.func.isRequired
 };
 
 export default Root;

@@ -6,6 +6,7 @@ export const List = styled.ul`
   padding: 0 1em;
   height: 390px;
   overflow: auto;
+  border-top: 1px solid #f0f0f0;
 `;
 
 export const ListItem = styled.li`

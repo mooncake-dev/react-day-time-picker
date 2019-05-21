@@ -6,7 +6,7 @@ import generateTimeSlots from './generate-time-slots';
 
 import { List, ListItem } from './List';
 
-function Root({ selectedDate }) {
+function Root({ selectedDate, selectTime }) {
   // TODO: pass slotSizeMinutes as prop
   const slotSizeMinutes = 15;
 
@@ -27,7 +27,11 @@ function Root({ selectedDate }) {
       {timeSlots.map(slot => {
         const isValid = validator ? validator(slot) : true;
         return (
-          <ListItem key={slot} isValid={isValid}>
+          <ListItem
+            key={slot}
+            isValid={isValid}
+            onClick={() => isValid && selectTime(slot)}
+          >
             {dateFns.format(slot, 'HH:mm')}
           </ListItem>
         );
@@ -37,7 +41,8 @@ function Root({ selectedDate }) {
 }
 
 Root.propTypes = {
-  selectedDate: PropTypes.instanceOf(Date)
+  selectedDate: PropTypes.instanceOf(Date),
+  selectTime: PropTypes.func.isRequired
 };
 
 export default Root;

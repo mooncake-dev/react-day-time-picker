@@ -18,11 +18,7 @@ export const Popup = styled.div`
   font-size: 1.1em;
 `;
 
-export const PopupHeader = styled.header`
-  border-bottom: 1px solid #f0f0f0;
-  box-shadow: 0 4px 3px -4px #00000018;
-  padding: 0 0 1em 0;
-`;
+export const PopupHeader = styled.header``;
 
 export const PopupClose = styled.a`
   color: #3a9ad9;
