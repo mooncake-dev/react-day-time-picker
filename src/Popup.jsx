@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const PopupWrapper = styled.div`
   position: relative;
+  text-align: center;
 `;
 
 export const Popup = styled.div`

@@ -13,7 +13,7 @@ export const ListItem = styled.li`
   padding: 1em;
   border: 1px solid;
   margin: 1em 0;
-  opacity: ${props => (props.isValid ? 1 : 0.3)}
+  opacity: ${props => (props.isValid ? 1 : 0.3)};
 
   :hover {
     cursor: ${props => (props.isValid ? 'pointer' : 'inherit')};
