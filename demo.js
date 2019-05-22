@@ -99,6 +99,7 @@ function App() {
         <DayTimePicker
           dayValidator={dayValidator}
           timeValidator={undefined}
+          timeSlotSizeMinutes={30}
           isLoading={isScheduling}
           isDone={isScheduled}
           err={scheduleErr}

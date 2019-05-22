@@ -6,10 +6,7 @@ import generateTimeSlots from './generate-time-slots';
 
 import { List, ListItem } from './List';
 
-function Root({ pickedDay, validator, pickTime }) {
-  // TODO: pass slotSizeMinutes as prop
-  const slotSizeMinutes = 15;
-
+function Root({ pickedDay, slotSizeMinutes, validator, pickTime }) {
   const timeSlots = generateTimeSlots(pickedDay, slotSizeMinutes);
 
   return (
@@ -32,6 +29,7 @@ function Root({ pickedDay, validator, pickTime }) {
 
 Root.propTypes = {
   pickedDay: PropTypes.instanceOf(Date),
+  slotSizeMinutes: PropTypes.number.isRequired,
   validator: PropTypes.func,
   pickTime: PropTypes.func.isRequired
 };
