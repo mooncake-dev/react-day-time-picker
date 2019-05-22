@@ -104,14 +104,17 @@ function Root({ validator, pickDay }) {
 
           <MonthDays>
             {days.map(day => {
-              const formatted = dateFns.format(day, 'D');
               const isSameMonth = dateFns.isSameMonth(day, startDay);
+              if (!isSameMonth) {
+                return <MonthDay key={day} />;
+              }
+
+              const formatted = dateFns.format(day, 'D');
               const isToday = dateFns.isToday(day);
               const isValid = validator ? validator(day) : true;
               return (
                 <MonthDay
                   key={day}
-                  disabled={!isSameMonth}
                   isValid={isValid}
                   isToday={isToday}
                   onClick={() => isValid && handlePickDay(day)}
@@ -135,8 +138,12 @@ function Root({ validator, pickDay }) {
           <DaysOfMonth>
             <MonthDays>
               {fakeDays.map(fakeDay => {
-                const formatted = dateFns.format(fakeDay, 'D');
                 const isSameMonth = dateFns.isSameMonth(fakeDay, fakeStartDay);
+                if (!isSameMonth) {
+                  return <MonthDay key={fakeDay} />;
+                }
+
+                const formatted = dateFns.format(fakeDay, 'D');
                 const isToday = dateFns.isToday(fakeDay);
                 const isValid = validator ? validator(fakeDay) : true;
                 return (

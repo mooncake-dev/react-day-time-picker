@@ -20,7 +20,6 @@ export const MonthDay = styled.li`
   padding: 1em 0;
   border-radius: 50%;
   transition: all 0.25s ease;
-  visibility: ${props => (props.disabled ? 'hidden' : 'visible')};
   font-weight: ${props => (props.isToday ? 'bold' : 'inherit')};
   color: ${props => (props.isToday ? '#3a9ad9' : 'inherit')};
   opacity: ${props => (props.isValid ? 1 : 0.3)}
