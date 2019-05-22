@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
 import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
@@ -7,7 +8,15 @@ import { ConfirmButton } from './Confirm';
 import Calendar from './calendar';
 import TimeSlots from './time-slots';
 
-function DayTimePicker() {
+function DayTimePicker({
+  isLoading,
+  isDone,
+  err,
+  onConfirm,
+  confirmText,
+  loadingText,
+  doneText
+}) {
   const [pickedDay, setPickedDay] = useState(null);
   const [pickedTime, setPickedTime] = useState(null);
   const [showPickTime, setShowPickTime] = useState(false);
@@ -29,7 +38,7 @@ function DayTimePicker() {
   };
 
   const handleConfirm = () => {
-    console.log('confirm: ', pickedTime); // eslint-disable-line no-console
+    onConfirm(pickedTime);
   };
 
   const handleCloseConfirm = () => {
@@ -68,16 +77,46 @@ function DayTimePicker() {
               <b>{dateFns.format(pickedTime, 'HH:mm')}</b>
             </p>
 
-            <p>
-              <PopupClose onClick={handleCloseConfirm}>Cancel</PopupClose>
-            </p>
+            {!isDone && (
+              <p>
+                <PopupClose onClick={handleCloseConfirm}>Cancel</PopupClose>
+              </p>
+            )}
           </PopupHeader>
 
-          <ConfirmButton onClick={handleConfirm}>Schedule</ConfirmButton>
+          {!isDone ? (
+            <ConfirmButton disabled={isLoading} onClick={handleConfirm}>
+              {isLoading ? loadingText : confirmText}
+            </ConfirmButton>
+          ) : (
+            <p>{doneText}</p>
+          )}
+
+          {err && (
+            <div>
+              <p>Error: {err}</p>
+            </div>
+          )}
         </Popup>
       )}
     </PopupWrapper>
   );
 }
+
+DayTimePicker.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  isDone: PropTypes.bool.isRequired,
+  err: PropTypes.string,
+  onConfirm: PropTypes.func.isRequired,
+  confirmText: PropTypes.string,
+  loadingText: PropTypes.string,
+  doneText: PropTypes.string
+};
+
+DayTimePicker.defaultProps = {
+  confirmText: 'Schedule',
+  loadingText: 'Scheduling..',
+  doneText: 'Your event has been scheduled!'
+};
 
 export default DayTimePicker;

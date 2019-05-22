@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
 
@@ -28,13 +28,55 @@ const Container = styled.div`
   }
 `;
 
+function fakeRequest(data) {
+  console.log('fake request with data: ', data); // eslint-disable-line no-console
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      // Uncomment below to trigger error:
+      // return reject('KABOOM!');
+
+      resolve();
+    }, 2e3);
+  });
+}
+
 function App() {
+  const [isScheduling, setIsScheduling] = useState(false);
+  const [isScheduled, setIsScheduled] = useState(false);
+  const [scheduleErr, setScheduleErr] = useState('');
+
+  const handleScheduled = date => {
+    setIsScheduling(true);
+    setScheduleErr('');
+
+    fakeRequest(date)
+      .then(() => {
+        setScheduleErr('');
+        setIsScheduled(true);
+      })
+      .catch(err => {
+        setScheduleErr(err);
+      })
+      .finally(() => {
+        setIsScheduling(false);
+      });
+  };
+
   return (
     <Main>
       <Container>
         <h3>Pick a Day and Time</h3>
 
-        <DayTimePicker />
+        <DayTimePicker
+          isLoading={isScheduling}
+          isDone={isScheduled}
+          err={scheduleErr}
+          onConfirm={handleScheduled}
+          confirmText="Schedule Assignment"
+          loadingText="Scheduling.."
+          doneText="Your assignment has been scheduled!"
+        />
       </Container>
     </Main>
   );
