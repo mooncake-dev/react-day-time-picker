@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
+import {
+  PopupWrapper,
+  Popup,
+  PopupHeader,
+  PopupHighlight,
+  PopupClose
+} from './Popup';
+
 import { ConfirmButton } from './Confirm';
+import { DayIcon, ClockIcon } from './Icons';
 
 import Calendar from './calendar';
 import TimeSlots from './time-slots';
@@ -56,9 +64,11 @@ function DayTimePicker({
       {showPickTime && (
         <Popup>
           <PopupHeader>
-            <p>
-              <b>{dateFns.format(pickedDay, 'dddd, MMMM Do YYYY')}</b>
-            </p>
+            <PopupHighlight>
+              <p>
+                <DayIcon /> {dateFns.format(pickedDay, 'dddd, MMMM Do, YYYY')}
+              </p>
+            </PopupHighlight>
 
             <p>
               <PopupClose onClick={handleClosePickTime}>Go Back</PopupClose>
@@ -77,13 +87,15 @@ function DayTimePicker({
       {showConfirm && (
         <Popup>
           <PopupHeader>
-            <p>
-              <b>{dateFns.format(pickedTime, 'dddd, MMMM Do YYYY')}</b>
-            </p>
+            <PopupHighlight>
+              <p>
+                <DayIcon /> {dateFns.format(pickedTime, 'dddd, MMMM Do, YYYY')}
+              </p>
 
-            <p>
-              <b>{dateFns.format(pickedTime, 'HH:mm')}</b>
-            </p>
+              <p>
+                <ClockIcon /> {dateFns.format(pickedTime, 'HH:mm')}
+              </p>
+            </PopupHighlight>
 
             {!isDone && (
               <p>

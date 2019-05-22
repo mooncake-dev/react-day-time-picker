@@ -21,6 +21,15 @@ export const Popup = styled.div`
 
 export const PopupHeader = styled.header``;
 
+export const PopupHighlight = styled.div`
+  width: 70%;
+  margin: auto;
+  padding: 1em;
+  background-color: #fafafa;
+  border-radius: 5px;
+  text-align: left;
+`;
+
 export const PopupClose = styled.a`
   color: #3a9ad9;
   text-decoration: underline;

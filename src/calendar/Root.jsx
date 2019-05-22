@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import generateDays from './generate-days';
+import { PrevIcon, NextIcon } from '../Icons';
 
 import { Grid, Wrapper, MonthYear, DaysOfWeek, DaysOfMonth } from './Layout';
 import { WeekDays, WeekDay, WEEK_DAYS } from './WeekDays';
 import { MonthDays, MonthDay } from './MonthDays';
-import { PrevIcon, NextIcon } from './Icons';
 
 import {
   MonthPicker,
@@ -18,6 +17,8 @@ import {
 } from './MonthPicker';
 
 import { Calendar, FakeCalendar } from './Calendar';
+
+import generateDays from './generate-days';
 
 function Root({ validator, pickDay }) {
   const [month, setMonth] = useState(new Date());

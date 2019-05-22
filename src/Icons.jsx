@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
   faChevronLeft,
-  faChevronRight
+  faChevronRight,
+  faCalendarDay,
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 const _propTypes = {
@@ -21,3 +23,13 @@ export const NextIcon = ({ className }) => (
   <FontAwesomeIcon icon={faChevronRight} className={className} />
 );
 NextIcon.propTypes = _propTypes;
+
+export const DayIcon = ({ className }) => (
+  <FontAwesomeIcon icon={faCalendarDay} className={className} />
+);
+DayIcon.propTypes = _propTypes;
+
+export const ClockIcon = ({ className }) => (
+  <FontAwesomeIcon icon={faClock} className={className} />
+);
+ClockIcon.propTypes = _propTypes;
