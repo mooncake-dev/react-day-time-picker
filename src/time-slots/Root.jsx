@@ -6,11 +6,11 @@ import generateTimeSlots from './generate-time-slots';
 
 import { List, ListItem } from './List';
 
-function Root({ selectedDate, selectTime }) {
+function Root({ pickedDay, pickTime }) {
   // TODO: pass slotSizeMinutes as prop
   const slotSizeMinutes = 15;
 
-  const timeSlots = generateTimeSlots(selectedDate, slotSizeMinutes);
+  const timeSlots = generateTimeSlots(pickedDay, slotSizeMinutes);
 
   // TODO: pass validator as prop
   // const validator = slotTime => {
@@ -31,7 +31,7 @@ function Root({ selectedDate, selectTime }) {
           <ListItem
             key={slot}
             isValid={isValid}
-            onClick={() => isValid && selectTime(slot)}
+            onClick={() => isValid && pickTime(slot)}
           >
             {dateFns.format(slot, 'HH:mm')}
           </ListItem>
@@ -42,8 +42,8 @@ function Root({ selectedDate, selectTime }) {
 }
 
 Root.propTypes = {
-  selectedDate: PropTypes.instanceOf(Date),
-  selectTime: PropTypes.func.isRequired
+  pickedDay: PropTypes.instanceOf(Date),
+  pickTime: PropTypes.func.isRequired
 };
 
 export default Root;

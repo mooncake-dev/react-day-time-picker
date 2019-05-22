@@ -19,7 +19,7 @@ import {
 
 import { Calendar, FakeCalendar } from './Calendar';
 
-function Root({ selectDate }) {
+function Root({ pickDay }) {
   // TODO: pass date as prop
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
@@ -61,12 +61,12 @@ function Root({ selectDate }) {
     setAnimation('');
   };
 
-  const handleSelectDate = selectedDate => {
+  const handlePickDay = day => {
     if (isAnimating) {
       return;
     }
 
-    selectDate(selectedDate);
+    pickDay(day);
   };
 
   // TODO: pass validator as prop
@@ -133,7 +133,7 @@ function Root({ selectDate }) {
                   disabled={!isSameMonth}
                   isValid={isValid}
                   isToday={isToday}
-                  onClick={() => isValid && handleSelectDate(day)}
+                  onClick={() => isValid && handlePickDay(day)}
                 >
                   {formatted}
                 </MonthDay>
@@ -178,7 +178,7 @@ function Root({ selectDate }) {
 }
 
 Root.propTypes = {
-  selectDate: PropTypes.func.isRequired
+  pickDay: PropTypes.func.isRequired
 };
 
 export default Root;

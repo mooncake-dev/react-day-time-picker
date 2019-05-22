@@ -7,18 +7,18 @@ import Calendar from './calendar';
 import TimeSlots from './time-slots';
 
 function DayTimePicker() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState(null);
+  const [pickedDay, setPickedDay] = useState(null);
+  const [pickedTime, setPickedTime] = useState(null);
   const [showPickTime, setShowPickTime] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
-  const handleSelectedDate = date => {
-    setSelectedDate(date);
+  const handlePickDay = day => {
+    setPickedDay(day);
     setShowPickTime(true);
   };
 
-  const handleSelectTime = time => {
-    setSelectedTime(time);
+  const handlePickTime = time => {
+    setPickedTime(time);
     setShowConfirm(true);
   };
 
@@ -33,7 +33,7 @@ function DayTimePicker() {
 
   return (
     <PopupWrapper>
-      <Calendar selectDate={handleSelectedDate} />
+      <Calendar pickDay={handlePickDay} />
 
       {showPickTime && (
         <Popup>
@@ -41,7 +41,7 @@ function DayTimePicker() {
             <p>You picked: </p>
 
             <p>
-              <b>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</b>
+              <b>{dateFns.format(pickedDay, 'dddd, MMMM Do YYYY')}</b>
             </p>
 
             <p>
@@ -50,10 +50,7 @@ function DayTimePicker() {
             </p>
           </PopupHeader>
 
-          <TimeSlots
-            selectedDate={selectedDate}
-            selectTime={handleSelectTime}
-          />
+          <TimeSlots pickedDay={pickedDay} pickTime={handlePickTime} />
         </Popup>
       )}
 
@@ -63,8 +60,8 @@ function DayTimePicker() {
             <p>You&apos;re about to schedule for:</p>
 
             <p>
-              <b>{dateFns.format(selectedDate, 'dddd, MMMM Do YYYY')}</b> at{' '}
-              <b>{dateFns.format(selectedTime, 'HH:mm')}</b>
+              <b>{dateFns.format(pickedTime, 'dddd, MMMM Do YYYY')}</b> at{' '}
+              <b>{dateFns.format(pickedTime, 'HH:mm')}</b>
             </p>
 
             <p>
