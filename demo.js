@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
 
-import DateTimePicker from './src';
+import DayTimePicker from './src';
 
 const Main = styled.main`
   box-sizing: border-box;
@@ -15,7 +15,7 @@ const Main = styled.main`
 function App() {
   return (
     <Main>
-      <DateTimePicker />
+      <DayTimePicker />
     </Main>
   );
 }

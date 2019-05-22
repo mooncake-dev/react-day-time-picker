@@ -1,6 +1,6 @@
-# React Date and Time picker
+# React Day and Time picker
 
-A React component to pick a date and time (useful for scheduling).
+A React component to pick a day and time; useful for scheduling.
 
 ## Running Locally
 

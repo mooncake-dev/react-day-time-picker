@@ -1,7 +1,7 @@
 {
-  "name": "react-date-time-picker",
+  "name": "react-day-time-picker",
   "version": "1.0.0",
-  "description": "A React component to pick a date and time (useful for scheduling).",
+  "description": "A React component to pick a day and time (useful for scheduling).",
   "main": "",
   "scripts": {
     "test": "jest",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mooncake-dev/react-date-time-picker.git"
+    "url": "git+https://github.com/mooncake-dev/react-day-time-picker.git"
   },
   "keywords": [],
   "author": "Daniël Illouz <daniel.illouz@me.com> (https://www.danillouz.dev/)",
@@ -23,9 +23,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mooncake-dev/react-date-time-picker/issues"
+    "url": "https://github.com/mooncake-dev/react-day-time-picker/issues"
   },
-  "homepage": "https://github.com/mooncake-dev/react-date-time-picker#readme",
+  "homepage": "https://github.com/mooncake-dev/react-day-time-picker#readme",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-jest": "^24.8.0",

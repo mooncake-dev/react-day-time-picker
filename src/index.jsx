@@ -7,7 +7,7 @@ import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
 import Calendar from './calendar';
 import TimeSlots from './time-slots';
 
-function DateTimePicker() {
+function DayTimePicker() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [showPickTime, setShowPickTime] = useState(false);
@@ -85,4 +85,4 @@ function DateTimePicker() {
   );
 }
 
-export default DateTimePicker;
+export default DayTimePicker;
