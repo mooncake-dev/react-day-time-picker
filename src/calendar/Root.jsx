@@ -19,8 +19,7 @@ import {
 
 import { Calendar, FakeCalendar } from './Calendar';
 
-function Root({ pickDay }) {
-  // TODO: pass date as prop
+function Root({ validator, pickDay }) {
   const [month, setMonth] = useState(new Date());
   const [fakeMonth, setFakeMonth] = useState(month);
   const [animation, setAnimation] = useState('');
@@ -67,24 +66,6 @@ function Root({ pickDay }) {
     }
 
     pickDay(day);
-  };
-
-  // TODO: pass validator as prop
-  // "day" is a Date Object that starts at "00:00:00" hours, e.g.:
-  // "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
-  const validator = day => {
-    const now = new Date();
-    const today = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      0,
-      0,
-      0
-    );
-
-    const isValid = day.getTime() >= today.getTime();
-    return isValid;
   };
 
   return (
@@ -178,6 +159,7 @@ function Root({ pickDay }) {
 }
 
 Root.propTypes = {
+  validator: PropTypes.func,
   pickDay: PropTypes.func.isRequired
 };
 

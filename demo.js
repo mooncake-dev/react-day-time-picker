@@ -41,6 +41,24 @@ function fakeRequest(data) {
   });
 }
 
+// TODO: pass validator as prop
+// "day" is a Date Object that starts at "00:00:00" hours, e.g.:
+// "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
+function dayValidator(day) {
+  const now = new Date();
+  const today = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    0,
+    0,
+    0
+  );
+
+  const isValid = day.getTime() >= today.getTime();
+  return isValid;
+}
+
 function App() {
   const [isScheduling, setIsScheduling] = useState(false);
   const [isScheduled, setIsScheduled] = useState(false);
@@ -69,6 +87,7 @@ function App() {
         <h3>Pick a Day and Time</h3>
 
         <DayTimePicker
+          dayValidator={dayValidator}
           isLoading={isScheduling}
           isDone={isScheduled}
           err={scheduleErr}

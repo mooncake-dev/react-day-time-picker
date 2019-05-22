@@ -9,6 +9,7 @@ import Calendar from './calendar';
 import TimeSlots from './time-slots';
 
 function DayTimePicker({
+  dayValidator,
   isLoading,
   isDone,
   err,
@@ -48,7 +49,7 @@ function DayTimePicker({
 
   return (
     <PopupWrapper>
-      <Calendar pickDay={handlePickDay} />
+      <Calendar validator={dayValidator} pickDay={handlePickDay} />
 
       {showPickTime && (
         <Popup>
@@ -104,6 +105,7 @@ function DayTimePicker({
 }
 
 DayTimePicker.propTypes = {
+  dayValidator: PropTypes.func,
   isLoading: PropTypes.bool.isRequired,
   isDone: PropTypes.bool.isRequired,
   err: PropTypes.string,
