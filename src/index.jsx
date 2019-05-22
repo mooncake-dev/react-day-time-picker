@@ -87,7 +87,7 @@ function DayTimePicker({
 
             {!isDone && (
               <p>
-                <PopupClose onClick={handleCloseConfirm}>Cancel</PopupClose>
+                <PopupClose onClick={handleCloseConfirm}>Go Back</PopupClose>
               </p>
             )}
           </PopupHeader>
