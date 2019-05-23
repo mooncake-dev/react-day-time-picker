@@ -64,7 +64,6 @@ function DayTimePicker({
               <p>
                 <DayIcon /> {dateFns.format(pickedDay, 'dddd, MMMM Do, YYYY')}
               </p>
-
               <p>
                 <PopupClose onClick={handleClosePickTime}>Go Back</PopupClose>
               </p>
@@ -92,7 +91,9 @@ function DayTimePicker({
 
               {!isDone && (
                 <p>
-                  <PopupClose onClick={handleCloseConfirm}>Go Back</PopupClose>
+                  <PopupClose disabled={isLoading} onClick={handleCloseConfirm}>
+                    Go Back
+                  </PopupClose>
                 </p>
               )}
             </PopupHeader>

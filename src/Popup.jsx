@@ -23,11 +23,21 @@ export const PopupHeader = styled.header`
   padding: 1em 0;
 `;
 
-export const PopupClose = styled.a`
+export const PopupClose = styled.button`
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 1em;
   color: ${props => props.theme.primary};
   text-decoration: underline;
 
   :hover {
     cursor: pointer;
+  }
+
+  :disabled {
+    cursor: not-allowed;
+    color: ${props => props.theme.buttons.disabled.color};
   }
 `;
