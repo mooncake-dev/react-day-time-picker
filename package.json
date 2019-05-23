@@ -6,10 +6,10 @@
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "start": "rimraf .cache dev && parcel index.html --out-dir dev",
+    "start": "rimraf .cache dev && parcel demo/index.html --out-dir dev",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:format": "npm run lint -- --fix",
-    "build": "parcel build index.html"
+    "build": "parcel build demo/index.html"
   },
   "repository": {
     "type": "git",
@@ -41,6 +41,7 @@
     "jest": "^24.8.0",
     "parcel-bundler": "^1.12.3",
     "prettier": "^1.17.1",
+    "prism-react-renderer": "^0.1.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "rimraf": "^2.6.3"
