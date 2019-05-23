@@ -15,7 +15,7 @@ export const Popup = styled.div`
   width: 100%;
   height: 100%;
   z-index: 3;
-  background-color: #fff;
+  background-color: ${props => props.theme.background};
   font-size: 1.1em;
 `;
 
@@ -24,7 +24,7 @@ export const PopupHeader = styled.header`
 `;
 
 export const PopupClose = styled.a`
-  color: #3a9ad9;
+  color: ${props => props.theme.primary};
   text-decoration: underline;
 
   :hover {

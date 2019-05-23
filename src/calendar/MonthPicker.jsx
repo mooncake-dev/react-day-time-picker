@@ -86,7 +86,9 @@ export const MonthPicker = styled.div`
 
 const Button = styled.button`
   border-radius: 50%;
-  border: 1px solid #f0f0f0;
+  border: 0;
+  color: inherit;
+  background-color: ${props => props.theme.secondary};
   box-sizing: border-box;
   outline: 0;
   transition: all 0.25s ease;
@@ -97,8 +99,7 @@ const Button = styled.button`
 
   :hover {
     cursor: pointer;
-    color: #3a9ad9;
-    background-color: #f0f0f0;
+    color: ${props => props.theme.primary};
   }
 `;
 

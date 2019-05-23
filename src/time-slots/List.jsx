@@ -10,7 +10,7 @@ export const List = styled.ul`
   padding: 1em;
   height: 355px;
   overflow: auto;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid ${props => props.theme.secondary};
 `;
 
 export const ListItem = styled.li`
@@ -21,6 +21,6 @@ export const ListItem = styled.li`
 
   :hover {
     cursor: ${props => (props.isValid ? 'pointer' : 'inherit')};
-    color: ${props => (props.isValid ? '#3a9ad9' : 'inherit')};
+    color: ${props => (props.isValid ? props.theme.primary : 'inherit')};
   }
 `;

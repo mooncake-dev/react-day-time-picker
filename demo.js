@@ -16,7 +16,7 @@ const Container = styled.div`
   margin: auto;
   padding: 1em;
   background-color: #fff;
-  color: #666;
+  color: #333;
   border: 1px solid #f0f0f0;
   border-radius: 5px;
   text-align: center;
@@ -60,6 +60,7 @@ function dayValidator(calendarDay) {
 }
 
 // "slotTime" is a Date Object
+// NOTE: currently not passed as prop
 function timeValidator(slotTime) {
   const validTimes = [
     new Date('Tue May 21 2019 14:15:00 GMT+0200').getTime(),
@@ -68,6 +69,27 @@ function timeValidator(slotTime) {
   const isValid = validTimes.includes(slotTime.getTime());
   return isValid;
 }
+
+// NOTE: currently not passed as prop
+const theme = {
+  primary: '#3a9ad9',
+  secondary: '#f0f0f0',
+  background: '#fff',
+  buttons: {
+    disabled: {
+      color: '#666',
+      background: '#f0f0f0'
+    },
+    confirm: {
+      color: '#fff',
+      background: '#3a9ad9',
+      hover: {
+        color: '',
+        background: 'rgba(58, 154, 217, 0.7)'
+      }
+    }
+  }
+};
 
 function App() {
   const [isScheduling, setIsScheduling] = useState(false);
@@ -107,6 +129,7 @@ function App() {
           confirmText="Schedule Assignment"
           loadingText="Scheduling.."
           doneText="Your assignment has been scheduled!"
+          theme={undefined}
         />
       </Container>
     </Main>
