@@ -72,20 +72,24 @@ function timeValidator(slotTime) {
 
 // NOTE: currently not passed as prop
 const theme = {
-  primary: '#3a9ad9',
-  secondary: '#f0f0f0',
-  background: '#fff',
+  primary: 'gold',
+  secondary: 'slategrey',
+
+  // This should match the container background
+  // Text color is inherited from the container
+  background: '#333',
+
   buttons: {
     disabled: {
-      color: '#666',
+      color: '#333',
       background: '#f0f0f0'
     },
     confirm: {
       color: '#fff',
-      background: '#3a9ad9',
+      background: 'slategrey',
       hover: {
         color: '',
-        background: 'rgba(58, 154, 217, 0.7)'
+        background: 'lightslategrey'
       }
     }
   }
