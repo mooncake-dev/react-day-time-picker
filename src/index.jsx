@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import {
-  PopupWrapper,
-  Popup,
-  PopupHeader,
-  PopupHighlight,
-  PopupClose
-} from './Popup';
-
+import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
 import { ConfirmButton } from './Confirm';
 import { DayIcon, ClockIcon } from './Icons';
 
@@ -64,11 +57,9 @@ function DayTimePicker({
       {showPickTime && (
         <Popup>
           <PopupHeader>
-            <PopupHighlight>
-              <p>
-                <DayIcon /> {dateFns.format(pickedDay, 'dddd, MMMM Do, YYYY')}
-              </p>
-            </PopupHighlight>
+            <p>
+              <DayIcon /> {dateFns.format(pickedDay, 'dddd, MMMM Do, YYYY')}
+            </p>
 
             <p>
               <PopupClose onClick={handleClosePickTime}>Go Back</PopupClose>
@@ -87,15 +78,13 @@ function DayTimePicker({
       {showConfirm && (
         <Popup>
           <PopupHeader>
-            <PopupHighlight>
-              <p>
-                <DayIcon /> {dateFns.format(pickedTime, 'dddd, MMMM Do, YYYY')}
-              </p>
+            <p>
+              <DayIcon /> {dateFns.format(pickedTime, 'dddd, MMMM Do, YYYY')}
+            </p>
 
-              <p>
-                <ClockIcon /> {dateFns.format(pickedTime, 'HH:mm')}
-              </p>
-            </PopupHighlight>
+            <p>
+              <ClockIcon /> {dateFns.format(pickedTime, 'HH:mm')}
+            </p>
 
             {!isDone && (
               <p>
@@ -112,11 +101,7 @@ function DayTimePicker({
             <p>{doneText}</p>
           )}
 
-          {err && (
-            <div>
-              <p>Error: {err}</p>
-            </div>
-          )}
+          {err && <p>Error: {err}</p>}
         </Popup>
       )}
     </PopupWrapper>
