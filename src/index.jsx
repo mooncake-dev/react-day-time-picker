@@ -5,7 +5,8 @@ import { ThemeProvider } from 'styled-components';
 
 import { PopupWrapper, Popup, PopupHeader, PopupClose } from './Popup';
 import { ConfirmButton } from './Confirm';
-import { DayIcon, ClockIcon } from './Icons';
+import { DayIcon, ClockIcon, SuccessIcon, FailedIcon } from './Icons';
+import { Success, Failed } from './Feedback';
 
 import Calendar from './calendar';
 import TimeSlots from './time-slots';
@@ -101,10 +102,20 @@ function DayTimePicker({
                 {isLoading ? loadingText : confirmText}
               </ConfirmButton>
             ) : (
-              <p>{doneText}</p>
+              <Success>
+                <p>
+                  <SuccessIcon /> {doneText}
+                </p>
+              </Success>
             )}
 
-            {err && <p>Error: {err}</p>}
+            {err && (
+              <Failed>
+                <p>
+                  <FailedIcon /> {err}
+                </p>
+              </Failed>
+            )}
           </Popup>
         )}
       </PopupWrapper>
@@ -155,7 +166,6 @@ DayTimePicker.defaultProps = {
   confirmText: 'Schedule',
   loadingText: 'Scheduling..',
   doneText: 'Your event has been scheduled!',
-
   theme: {
     primary: '#3a9ad9',
     secondary: '#f0f0f0',
@@ -172,6 +182,14 @@ DayTimePicker.defaultProps = {
           color: '',
           background: '#3a9ad9d6'
         }
+      }
+    },
+    feedback: {
+      success: {
+        color: '#29aba4'
+      },
+      failed: {
+        color: '#eb7260'
       }
     }
   }

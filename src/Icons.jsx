@@ -7,7 +7,9 @@ import {
   faChevronLeft,
   faChevronRight,
   faCalendarDay,
-  faClock
+  faClock,
+  faCheckCircle,
+  faExclamationCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 const _propTypes = {
@@ -33,3 +35,13 @@ export const ClockIcon = ({ className }) => (
   <FontAwesomeIcon icon={faClock} className={className} />
 );
 ClockIcon.propTypes = _propTypes;
+
+export const SuccessIcon = ({ className }) => (
+  <FontAwesomeIcon icon={faCheckCircle} className={className} />
+);
+SuccessIcon.propTypes = _propTypes;
+
+export const FailedIcon = ({ className }) => (
+  <FontAwesomeIcon icon={faExclamationCircle} className={className} />
+);
+FailedIcon.propTypes = _propTypes;

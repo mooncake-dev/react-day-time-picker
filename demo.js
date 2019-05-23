@@ -34,7 +34,7 @@ function fakeRequest(data) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       // Uncomment below to trigger error:
-      // return reject('KABOOM!');
+      // return reject('Error: KABOOM!');
 
       resolve();
     }, 2e3);
@@ -91,6 +91,15 @@ const theme = {
         color: '',
         background: 'lightslategrey'
       }
+    }
+  },
+
+  feedback: {
+    success: {
+      color: '#29aba4'
+    },
+    failed: {
+      color: '#eb7260'
     }
   }
 };
