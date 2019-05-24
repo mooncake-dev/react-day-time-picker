@@ -8,13 +8,6 @@ export const Grid = styled.div`
     'month-year'
     'days-of-week'
     'days-of-month';
-  width: 420px;
-  margin: auto;
-
-  @media (max-width: 460px) {
-    width: 100%;
-    border-radius: 0;
-  }
 `;
 
 export const MonthYear = styled.header`

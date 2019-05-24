@@ -3,6 +3,13 @@ import styled from 'styled-components';
 export const PopupWrapper = styled.div`
   position: relative;
   text-align: center;
+
+  width: 420px;
+  margin: auto;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
 `;
 
 export const Popup = styled.div`
