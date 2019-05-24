@@ -80,7 +80,7 @@ export const MonthPicker = styled.div`
   grid-template-rows: 1fr;
   grid-gap: 0;
   align-items: center;
-  padding: 1em;
+  padding: 0 0.5em;
   font-size: 1.2em;
 `;
 
