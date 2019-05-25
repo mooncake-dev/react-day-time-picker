@@ -31,7 +31,7 @@ function App() {
   return (
     <Container>
       <h3>Pick a Day and Time</h3>
-      <DayTimePicker timeSlotSizeMinutes={15}  />
+      <DayTimePicker timeSlotSizeMinutes={15} />
     </Container>
   );
 }`;
