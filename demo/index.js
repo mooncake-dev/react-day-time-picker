@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
-import { Main } from './components/Layout';
+import { Main, Footer } from './components/Layout';
 
 import {
   Article,
@@ -679,6 +679,17 @@ function App() {
           </Caption>
         </Interactive>
       </Article>
+
+      <Footer>
+        Built with 💚 by{' '}
+        <a
+          href="https://github.com/mooncake-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Mooncake
+        </a>
+      </Footer>
     </Main>
   );
 }
