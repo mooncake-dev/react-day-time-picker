@@ -9,17 +9,16 @@ import {
   Title,
   SubTitle,
   Interactive,
-  Container,
   Caption
 } from './Article';
 
 import { CodeBlock, InlineCode } from './CodeBlock';
-
 import { TableWrapper, Table, TH, TD } from './Table';
+import { Container, DarkContainer } from './Container';
 
 import { fakeRequest } from './request';
 import { dayValidator, timeSlotValidator } from './validators';
-// import theme from './theme';
+import theme from './theme';
 
 import {
   codeExample1,
@@ -29,7 +28,8 @@ import {
   codeExample5,
   codeExample6,
   codeExample7,
-  codeExample8
+  codeExample8,
+  codeExample9
 } from './code-examples';
 
 import DayTimePicker from '../src';
@@ -109,6 +109,10 @@ function App() {
                     Using the time slot validator
                   </a>
                 </li>
+
+                <li>
+                  <a href="#theming">Theming</a>
+                </li>
               </ul>
             </li>
           </ul>
@@ -139,7 +143,7 @@ function App() {
 
             <tbody>
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>timeSlotSizeMinutes</InlineCode>
                 </TD>
                 <TD>Number</TD>
@@ -147,12 +151,12 @@ function App() {
                 <TD>-</TD>
                 <TD alignLeft>
                   The size of the time slots a user can pick, after picking a
-                  day,
+                  day.
                 </TD>
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>isLoading</InlineCode>
                 </TD>
                 <TD>Boolean</TD>
@@ -165,7 +169,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>isDone</InlineCode>
                 </TD>
                 <TD>Boolean</TD>
@@ -178,7 +182,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>err</InlineCode>
                 </TD>
                 <TD>String</TD>
@@ -192,7 +196,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>onConfirm</InlineCode>
                 </TD>
                 <TD>Function</TD>
@@ -205,7 +209,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>confirmText</InlineCode>
                 </TD>
                 <TD>String</TD>
@@ -215,7 +219,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>loadingText</InlineCode>
                 </TD>
                 <TD>String</TD>
@@ -225,7 +229,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>doneText</InlineCode>
                 </TD>
                 <TD>String</TD>
@@ -235,7 +239,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>dayValidator</InlineCode>
                 </TD>
                 <TD>Function</TD>
@@ -248,7 +252,7 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>timeSlotValidator</InlineCode>
                 </TD>
                 <TD>Function</TD>
@@ -261,14 +265,15 @@ function App() {
               </tr>
 
               <tr>
-                <TD>
+                <TD alignLeft>
                   <InlineCode>theme</InlineCode>
                 </TD>
                 <TD>Object</TD>
                 <TD>No</TD>
                 <TD>-</TD>
                 <TD alignLeft>
-                  Contains theme properties to customize the look of the{' '}
+                  Contains <a href="#theming">theme properties</a> to customize
+                  the look of the{' '}
                   <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode>{' '}
                   component.
                 </TD>
@@ -320,6 +325,12 @@ function App() {
             <DayTimePicker timeSlotSizeMinutes={15} />
           </Container>
         </Interactive>
+
+        <p>
+          More advanced <a href="#theming">theming</a> options are available to
+          further customize how the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> looks.
+        </p>
 
         <p>
           Read ahead to see how to get the picked day and time after a user
@@ -496,6 +507,164 @@ function App() {
           </Container>
 
           <Caption>Only time slots in the evening can be picked.</Caption>
+        </Interactive>
+
+        <SubTitle level={2}>Theming</SubTitle>
+
+        <p>
+          You can customize the look of the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component by
+          providing a <InlineCode>theme</InlineCode> prop. This value must be an
+          Object and may contain one or more of the following properties:
+        </p>
+
+        <TableWrapper>
+          <Table>
+            <thead>
+              <tr>
+                <TH>Name</TH>
+                <TH>Type</TH>
+                <TH>Default</TH>
+                <TH>Description</TH>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>primary</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#3a9ad9</TD>
+                <TD alignLeft>
+                  The color of the current day- and hover highlights.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>secondary</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#f0f0f0</TD>
+                <TD alignLeft>
+                  The background color of the month navigation buttons, and
+                  color of borders.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>background</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#fff</TD>
+                <TD alignLeft>
+                  The main background color. Note that this should match the
+                  background color of the component wrapping the{' '}
+                  <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode>{' '}
+                  component.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.disabled.color</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#333</TD>
+                <TD alignLeft>The text color of a disabled button.</TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.disabled.background</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#dfdfdf</TD>
+                <TD alignLeft>The background color of a disabled button.</TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.confirm.color</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#fff</TD>
+                <TD alignLeft>The color of the confirm (schedule) button.</TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.confirm.background</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#3a9ad9</TD>
+                <TD alignLeft>
+                  The background color of the confirm (schedule) button.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.confirm.hover.color</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>-</TD>
+                <TD alignLeft>
+                  The hover color of the confirm (schedule) button.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>buttons.confirm.hover.background</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#3a9ad9d6</TD>
+                <TD alignLeft>
+                  The hover background color of the confirm (schedule) button.
+                </TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>feedback.success.color</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#29aba4</TD>
+                <TD alignLeft>The color of success feedback messages.</TD>
+              </tr>
+
+              <tr>
+                <TD alignLeft>
+                  <InlineCode>feedback.failed.color</InlineCode>
+                </TD>
+                <TD>String</TD>
+                <TD>#eb7260</TD>
+                <TD alignLeft>The color of failed feedback messages.</TD>
+              </tr>
+            </tbody>
+          </Table>
+        </TableWrapper>
+
+        <p>
+          For example, to use a dark theme, provide the following theme Object:
+        </p>
+
+        <CodeBlock codeString={codeExample9} lang="jsx" />
+
+        <Interactive>
+          <DarkContainer>
+            <h3>Pick a Day and Time</h3>
+
+            <DayTimePicker timeSlotSizeMinutes={15} theme={theme} />
+          </DarkContainer>
+
+          <Caption>
+            Note that properties like text color are inherited from the wrapping
+            component.
+          </Caption>
         </Interactive>
       </Article>
     </Main>

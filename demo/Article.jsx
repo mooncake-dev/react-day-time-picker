@@ -94,22 +94,6 @@ export const Interactive = styled.div`
   font-size: 0.8em;
 `;
 
-export const Container = styled.div`
-  width: 475px;
-  margin: 1em auto;
-  padding: 1em;
-  background-color: #fff;
-  color: #333;
-  border: 1px solid #f0f0f0;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: 0 2px 4px #00000018;
-
-  @media (max-width: 520px) {
-    width: 100%;
-  }
-`;
-
 export const Caption = styled.div`
   margin: 2em 0;
   text-align: center;
