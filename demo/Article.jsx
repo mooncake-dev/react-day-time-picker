@@ -33,7 +33,7 @@ export const Title = styled.h1`
 `;
 
 const SubHeading = styled.h2`
-  font-size: 1.6em;
+  font-size: 1.8em;
   font-weight: 500;
 `;
 

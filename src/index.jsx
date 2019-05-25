@@ -127,33 +127,26 @@ function DayTimePicker({
 DayTimePicker.propTypes = {
   dayValidator: PropTypes.func,
   timeValidator: PropTypes.func,
-
   timeSlotSizeMinutes: PropTypes.number.isRequired,
-
   isLoading: PropTypes.bool.isRequired,
   isDone: PropTypes.bool.isRequired,
   err: PropTypes.string,
   onConfirm: PropTypes.func.isRequired,
-
   confirmText: PropTypes.string,
   loadingText: PropTypes.string,
   doneText: PropTypes.string,
-
   theme: PropTypes.shape({
     primary: PropTypes.string,
     secondary: PropTypes.string,
     background: PropTypes.string,
-
     buttons: PropTypes.shape({
       disabled: PropTypes.shape({
         color: PropTypes.string,
         background: PropTypes.string
       }),
-
       confirm: PropTypes.shape({
         color: PropTypes.string,
         background: PropTypes.string,
-
         hover: PropTypes.shape({
           color: PropTypes.string,
           background: PropTypes.string
