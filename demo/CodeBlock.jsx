@@ -30,7 +30,7 @@ const Line = styled.div`
   margin: 0.4em 0;
 `;
 
-function CodeBlock({ codeString, lang }) {
+export function CodeBlock({ codeString, lang }) {
   return (
     <Block>
       <Highlight
@@ -66,4 +66,10 @@ CodeBlock.propTypes = {
   lang: PropTypes.string.isRequired
 };
 
-export default CodeBlock;
+export const InlineCode = styled.code`
+  color: #333;
+  background-color: rgba(27, 31, 35, 0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  vertical-align: middle;
+`;
