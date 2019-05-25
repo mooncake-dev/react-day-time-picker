@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
+import { Main } from './Layout';
+
 import {
-  Main,
+  Article,
   Header,
   Title,
   SubTitle,
-  Article,
   Interactive,
-  Caption,
-  Container
-} from './Layout';
+  Container,
+  Caption
+} from './Article';
 
 import { CodeBlock, InlineCode } from './CodeBlock';
 
