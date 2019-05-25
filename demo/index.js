@@ -4,14 +4,15 @@ import { render } from 'react-dom';
 import {
   Main,
   Header,
-  Content,
-  Section,
+  Title,
+  SubTitle,
+  Article,
   Interactive,
   Caption,
   Container
 } from './Layout';
 
-import CodeBlock from './CodeBlock';
+import { CodeBlock } from './CodeBlock';
 
 import { fakeRequest } from './request';
 // import { dayValidator, timeValidator } from './validators';
@@ -54,151 +55,139 @@ function App() {
   return (
     <Main>
       <Header>
-        <h1>React Date Time Picker</h1>
+        <Title>React Date Time Picker</Title>
       </Header>
 
-      <Content>
-        <Section>
-          <p>A React component to help with scheduling a day and time.</p>
-        </Section>
+      <Article>
+        <p>A React component to help with scheduling a day and time.</p>
 
-        <Section>
-          <h2>Rendering the component</h2>
+        <SubTitle>Rendering the component</SubTitle>
 
-          <p>
-            On the most basic level, you can render the{' '}
-            <code>&#60;DayTimePicker&#47;&#62;</code> component by providing a{' '}
-            <code>timeSlotSizeMinutes</code> prop:
-          </p>
+        <p>
+          On the most basic level, you can render the{' '}
+          <code>&#60;DayTimePicker&#47;&#62;</code> component by providing a{' '}
+          <code>timeSlotSizeMinutes</code> prop:
+        </p>
 
-          <CodeBlock codeString={codeExample1} lang="jsx" />
+        <CodeBlock codeString={codeExample1} lang="jsx" />
 
-          <p>
-            This will render a basic calendar, where a day and time can be
-            picked:
-          </p>
+        <p>
+          This will render a basic calendar, where a day and time can be picked:
+        </p>
 
-          <Interactive>
+        <Interactive>
+          <DayTimePicker timeSlotSizeMinutes={15} />
+
+          <Caption>
+            Go ahead an pick a day and time. Each time slot corresponds to the{' '}
+            <code>timeSlotSizeMinutes</code> props, which is set to 15 minutes.
+          </Caption>
+        </Interactive>
+
+        <p>
+          You can style the <code>&#60;DayTimePicker&#47;&#62;</code> component
+          by wrapping it in a container. This will also allow you to render any
+          additional information next to it (like a header):
+        </p>
+
+        <CodeBlock codeString={codeExample2} lang="jsx" />
+
+        <Interactive>
+          <Container>
+            <h3>Pick a Day and Time</h3>
+
             <DayTimePicker timeSlotSizeMinutes={15} />
+          </Container>
 
-            <Caption>Go ahead an pick a day and time.</Caption>
+          <Caption>
+            Nothing happens yet when clicking on schedule after picking a day
+            and time.
+          </Caption>
+        </Interactive>
 
-            <Caption>
-              Each time slot corresponds to the <code>timeSlotSizeMinutes</code>{' '}
-              props, which is set to 15 minutes.
-            </Caption>
-          </Interactive>
+        <p>
+          Read ahead to see how to get the picked day and time after a user
+          clicks on the schedule button.
+        </p>
 
-          <p>
-            You can style the <code>&#60;DayTimePicker&#47;&#62;</code>{' '}
-            component by wrapping it in a container. This will also allow you to
-            render any additional information next to it (like a header):
-          </p>
+        <SubTitle>Getting the scheduled day and time</SubTitle>
 
-          <CodeBlock codeString={codeExample2} lang="jsx" />
+        <p>
+          The <code>&#60;DayTimePicker&#47;&#62;</code> component allows you to
+          hook into the confirmation event (when a user clicks on the schedule
+          button) by passing a handler function as the <code>onConfirm</code>{' '}
+          prop. The handler will be called with a <code>Date</code> Object, that
+          represents the picked date and time.
+        </p>
 
-          <Interactive>
-            <Container>
-              <h3>Pick a Day and Time</h3>
+        <p>
+          This is useful if you want to do something with the picked day and
+          time. Like sending it to an API or dispatching it to your application
+          store.
+        </p>
 
-              <DayTimePicker timeSlotSizeMinutes={15} />
-            </Container>
+        <CodeBlock codeString={codeExample3} lang="jsx" />
 
-            <Caption>
-              Nothing happens yet when clicking on schedule after picking a day
-              and time.
-            </Caption>
-          </Interactive>
+        <SubTitle>Showing scheduling feedback</SubTitle>
 
-          <p>
-            Read ahead to see how to get the picked day and time after a user
-            clicks on the schedule button.
-          </p>
-        </Section>
+        <p>
+          When a user clicks on the schedule button, you can give them feedback
+          about the scheduling process by tracking the following state:
+        </p>
 
-        <Section>
-          <h2>Getting the scheduled day and time</h2>
+        <ul>
+          <li>
+            <code>isScheduling</code>: is the{' '}
+            <code>&#60;DayTimePicker&#47;&#62;</code> component loading or not
+            (like when making an HTTP request).
+          </li>
+          <li>
+            <code>isScheduled</code>: is the{' '}
+            <code>&#60;DayTimePicker&#47;&#62;</code> component done scheduling
+            or not (like when an HTTP request was successful).
+          </li>
+          <li>
+            <code>scheduleErr</code>: did an error occur while scheduling, which
+            the <code>&#60;DayTimePicker&#47;&#62;</code> component needs to
+            show (like when an HTTP request failed).
+          </li>
+        </ul>
 
-          <p>
-            The <code>&#60;DayTimePicker&#47;&#62;</code> component allows you
-            to hook into the confirmation event (when a user clicks on the
-            schedule button) by passing a handler function as the{' '}
-            <code>onConfirm</code> prop. The handler will be called with a{' '}
-            <code>Date</code> Object, that represents the picked date and time.
-          </p>
+        <CodeBlock codeString={codeExample4} lang="jsx" />
 
-          <p>
-            This is useful if you want to do something with the picked day and
-            time. Like sending it to an API or dispatching it to your
-            application store.
-          </p>
+        <p>
+          You can simulate making an HTTP request with a function like this:
+        </p>
 
-          <CodeBlock codeString={codeExample3} lang="jsx" />
-        </Section>
+        <CodeBlock codeString={codeExample5} lang="jsx" />
 
-        <Section>
-          <h2>Showing scheduling feedback</h2>
+        <p>
+          You can then call it from the <code>onConfirm</code> handler, where
+          the state properties must be updated to reflect the stage in the
+          scheduling process:
+        </p>
 
-          <p>
-            When a user clicks on the schedule button, you can give them
-            feedback about the scheduling process by tracking the following
-            state:
-          </p>
+        <CodeBlock codeString={codeExample6} lang="jsx" />
 
-          <ul>
-            <li>
-              <code>isScheduling</code>: is the{' '}
-              <code>&#60;DayTimePicker&#47;&#62;</code> component loading or not
-              (like when making an HTTP request).
-            </li>
-            <li>
-              <code>isScheduled</code>: is the{' '}
-              <code>&#60;DayTimePicker&#47;&#62;</code> component done
-              scheduling or not (like when an HTTP request was successful).
-            </li>
-            <li>
-              <code>scheduleErr</code>: did an error occur while scheduling,
-              which the <code>&#60;DayTimePicker&#47;&#62;</code> component
-              needs to show (like when an HTTP request failed).
-            </li>
-          </ul>
+        <Interactive>
+          <Container>
+            <h3>Pick a Day and Time</h3>
 
-          <CodeBlock codeString={codeExample4} lang="jsx" />
+            <DayTimePicker
+              timeSlotSizeMinutes={15}
+              isLoading={isScheduling}
+              isDone={isScheduled}
+              err={scheduleErr}
+              onConfirm={handleScheduled}
+            />
+          </Container>
 
-          <p>
-            You can simulate making an HTTP request with a function like this:
-          </p>
-
-          <CodeBlock codeString={codeExample5} lang="jsx" />
-
-          <p>
-            You can then call it from the <code>onConfirm</code> handler, where
-            the state properties must be updated to reflect the stage in the
-            scheduling process:
-          </p>
-
-          <CodeBlock codeString={codeExample6} lang="jsx" />
-
-          <Interactive>
-            <Container>
-              <h3>Pick a Day and Time</h3>
-
-              <DayTimePicker
-                timeSlotSizeMinutes={15}
-                isLoading={isScheduling}
-                isDone={isScheduled}
-                err={scheduleErr}
-                onConfirm={handleScheduled}
-              />
-            </Container>
-
-            <Caption>
-              Schedule a date and time, then open your console to see the fake
-              response being logged.
-            </Caption>
-          </Interactive>
-        </Section>
-      </Content>
+          <Caption>
+            Schedule a date and time, then open your console to see the fake
+            response being logged.
+          </Caption>
+        </Interactive>
+      </Article>
     </Main>
   );
 }
