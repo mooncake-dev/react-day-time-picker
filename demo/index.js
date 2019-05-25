@@ -7,6 +7,7 @@ import {
   Article,
   Header,
   Title,
+  ByLine,
   SubTitle,
   Interactive,
   Caption
@@ -63,60 +64,71 @@ function App() {
         <Header>
           <Title>React Date Time Picker</Title>
 
-          <p>A React component to help with scheduling a day and time.</p>
-
-          <ul>
-            <li>
-              <a href="#installation">Installation</a>
-            </li>
-
-            <li>
-              <a href="#api">API</a>
-            </li>
-
-            <li>
-              <a href="#basic-usage">Basic usage</a>
-
-              <ul>
-                <li>
-                  <a href="#rendering-the-component">Rendering the component</a>
-                </li>
-
-                <li>
-                  <a href="#getting-the-scheduled-day-and-time">
-                    Getting the scheduled day and time
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#showing-scheduling-feedback">
-                    Showing scheduling feedback
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="#advanced-usage">Advanced usage</a>
-
-              <ul>
-                <li>
-                  <a href="#using-the-day-validator">Using the day validator</a>
-                </li>
-
-                <li>
-                  <a href="#using-the-time-slot-validator">
-                    Using the time slot validator
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#theming">Theming</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          <ByLine>
+            View on{' '}
+            <a
+              href="https://github.com/mooncake-dev/react-day-time-picker"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+          </ByLine>
         </Header>
+
+        <p>A React component to help with scheduling a day and time.</p>
+
+        <ul>
+          <li>
+            <a href="#installation">Installation</a>
+          </li>
+
+          <li>
+            <a href="#api">API</a>
+          </li>
+
+          <li>
+            <a href="#basic-usage">Basic usage</a>
+
+            <ul>
+              <li>
+                <a href="#rendering-the-component">Rendering the component</a>
+              </li>
+
+              <li>
+                <a href="#getting-the-scheduled-day-and-time">
+                  Getting the scheduled day and time
+                </a>
+              </li>
+
+              <li>
+                <a href="#showing-scheduling-feedback">
+                  Showing scheduling feedback
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#advanced-usage">Advanced usage</a>
+
+            <ul>
+              <li>
+                <a href="#using-the-day-validator">Using the day validator</a>
+              </li>
+
+              <li>
+                <a href="#using-the-time-slot-validator">
+                  Using the time slot validator
+                </a>
+              </li>
+
+              <li>
+                <a href="#theming">Theming</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
 
         <SubTitle>Installation</SubTitle>
 

@@ -21,15 +21,21 @@ export const Article = styled.article`
 `;
 
 export const Header = styled.header`
-  & p {
-    color: #666;
-  }
+  margin-bottom: 2em;
 `;
 
 export const Title = styled.h1`
+  margin: 0;
   text-align: center;
   font-size: 2.8em;
   font-weight: 500;
+`;
+
+export const ByLine = styled.p`
+  margin: 0;
+  text-align: center;
+  font-size: 0.8em;
+  color: #666;
 `;
 
 const SubHeading = styled.h2`
