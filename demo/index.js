@@ -60,9 +60,29 @@ function App() {
           <Title>React Date Time Picker</Title>
 
           <p>A React component to help with scheduling a day and time.</p>
+
+          <ul>
+            <li>
+              <a href="#rendering-the-component">Rendering the component</a>
+            </li>
+
+            <li>
+              <a href="#getting-the-scheduled-day-and-time">
+                Getting the scheduled day and time
+              </a>
+            </li>
+
+            <li>
+              <a href="#showing-scheduling-feedback">
+                Showing scheduling feedback
+              </a>
+            </li>
+          </ul>
         </Header>
 
-        <SubTitle>Rendering the component</SubTitle>
+        <SubTitle id="rendering-the-component">
+          Rendering the component
+        </SubTitle>
 
         <p>
           On the most basic level, you can render the{' '}
