@@ -102,9 +102,10 @@ function App() {
         <SubTitle level={2}>Rendering the component</SubTitle>
 
         <p>
-          On the most basic level, you can render the{' '}
-          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component by
-          providing a <InlineCode>timeSlotSizeMinutes</InlineCode> prop:
+          To get an impression of the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component, you
+          can render it by providing the{' '}
+          <InlineCode>timeSlotSizeMinutes</InlineCode> prop:
         </p>
 
         <CodeBlock codeString={codeExample1} lang="jsx" />
@@ -117,9 +118,9 @@ function App() {
           <DayTimePicker timeSlotSizeMinutes={15} />
 
           <Caption>
-            Go ahead an pick a day and time. Each time slot corresponds to the{' '}
-            <InlineCode>timeSlotSizeMinutes</InlineCode> props, which is set to
-            15 minutes.
+            Go ahead and pick a day and time. But note that this renders a
+            semi-functional component. Clicking the schedule button doesn&apos;t
+            do anything. Because we&apos;re not passing all required props yet.
           </Caption>
         </Interactive>
 
@@ -138,11 +139,6 @@ function App() {
 
             <DayTimePicker timeSlotSizeMinutes={15} />
           </Container>
-
-          <Caption>
-            Nothing happens yet when clicking on schedule after picking a day
-            and time.
-          </Caption>
         </Interactive>
 
         <p>
@@ -182,16 +178,18 @@ function App() {
             <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component
             loading or not (like when making an HTTP request).
           </li>
+
           <li>
             <InlineCode>isScheduled</InlineCode>: is the{' '}
             <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component done
             scheduling or not (like when an HTTP request was successful).
           </li>
+
           <li>
             <InlineCode>scheduleErr</InlineCode>: did an error occur while
-            scheduling, which the{' '}
+            scheduling, that the{' '}
             <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component
-            needs to show (like when an HTTP request failed).
+            should show (like when an HTTP request failed).
           </li>
         </ul>
 
@@ -225,8 +223,8 @@ function App() {
           </Container>
 
           <Caption>
-            Schedule a date and time, then open your console to see the fake
-            response being logged.
+            Schedule a date and time and open your console to see the fake
+            response logged.
           </Caption>
         </Interactive>
       </Article>
