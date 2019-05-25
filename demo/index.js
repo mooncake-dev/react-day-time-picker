@@ -201,7 +201,7 @@ function App() {
                 <TD>Yes</TD>
                 <TD>-</TD>
                 <TD alignLeft>
-                  Any error that occured while scheduling and the{' '}
+                  Any error that occured while scheduling, and the{' '}
                   <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode>{' '}
                   component should show.
                 </TD>
@@ -216,7 +216,7 @@ function App() {
                 <TD>-</TD>
                 <TD alignLeft>
                   Handler function that is called when a user clicks the
-                  schedule button, after picking a date and time.
+                  schedule button, after picking a day and time.
                 </TD>
               </tr>
 
@@ -258,7 +258,7 @@ function App() {
                 <TD>No</TD>
                 <TD>-</TD>
                 <TD alignLeft>
-                  A validator function to determine if a day can be selected by
+                  A validator function to determine if a day can be picked by
                   the user or not.
                 </TD>
               </tr>
@@ -271,8 +271,8 @@ function App() {
                 <TD>No</TD>
                 <TD>-</TD>
                 <TD alignLeft>
-                  A validator function to determine if a time slot can be
-                  selected by the user or not.
+                  A validator function to determine if a time slot can be picked
+                  by the user or not.
                 </TD>
               </tr>
 
@@ -345,19 +345,24 @@ function App() {
         </p>
 
         <p>
-          Read ahead to see how to get the picked day and time after a user
+          Read ahead to learn how to get the picked day and time, after a user
           clicks on the schedule button.
         </p>
 
         <SubTitle level={2}>Getting the scheduled day and time</SubTitle>
 
         <p>
-          The <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component
-          allows you to hook into the confirmation event (when a user clicks on
-          the schedule button) by passing a handler function as the{' '}
-          <InlineCode>onConfirm</InlineCode> prop. The handler will be called
-          with a <InlineCode>Date</InlineCode> Object, which represents the
-          picked date and time.
+          You can &quot;hook into&quot; the confirmation event (when a user
+          schedules the day and time) by passing a handler function as the{' '}
+          <InlineCode>onConfirm</InlineCode> prop.
+        </p>
+
+        <p>
+          The handler function is called by the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component when a
+          user clicks the schedule button. The handler is called with a{' '}
+          <InlineCode>Date</InlineCode> Object, which represents the picked date
+          and time.
         </p>
 
         <p>
@@ -390,7 +395,7 @@ function App() {
 
           <li>
             <InlineCode>scheduleErr</InlineCode>: any error that occured while
-            scheduling and the{' '}
+            scheduling, and the{' '}
             <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component
             should show (like when an HTTP request failed).
           </li>
@@ -426,7 +431,7 @@ function App() {
           </Container>
 
           <Caption>
-            Schedule a date and time and open your console to see the fake
+            Schedule a date and time, and open your console to see the fake
             response logged.
           </Caption>
         </Interactive>
@@ -438,7 +443,7 @@ function App() {
         <p>
           You can pass a validator function as the{' '}
           <InlineCode>dayValidator</InlineCode> prop, to determine if a day can
-          be selected by the user or not.
+          be picked by the user or not.
         </p>
 
         <p>
@@ -451,9 +456,10 @@ function App() {
 
         <p>
           The validator function should return <InlineCode>true</InlineCode> if
-          the day is considered valid, and the user should be able to pick it.
-          And <InlineCode>false</InlineCode> if the day is considered invalid,
-          and the user should <i>not</i> be able to pick it.
+          the day is considered &quot;valid&quot;, and the user should be able
+          to pick it. And <InlineCode>false</InlineCode> if the day is
+          considered &quot;invalid&quot;, and the user should <i>not</i> be able
+          to pick it.
         </p>
 
         <p>
@@ -481,7 +487,7 @@ function App() {
         <p>
           You can pass a validator function as the{' '}
           <InlineCode>timeSlotValidator</InlineCode> prop, to determine if a
-          time slot can be selected by the user or not.
+          time slot can be picked by the user or not.
         </p>
 
         <p>
@@ -489,16 +495,17 @@ function App() {
           <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> when it renders
           the time slots in the calendar view. The validator is called with a{' '}
           <InlineCode>Date</InlineCode> Object, which represents a time slot in
-          a picked day. And it will be called for every available time slot,
-          depending on the size of the{' '}
-          <InlineCode>timeSlotSizeMinutes</InlineCode> prop.
+          a picked day. And it will be called for every available time slot
+          (depending on the size of the{' '}
+          <InlineCode>timeSlotSizeMinutes</InlineCode> prop).
         </p>
 
         <p>
           The validator function should return <InlineCode>true</InlineCode> if
-          the time slot is considered valid, and the user should be able to pick
-          it. And <InlineCode>false</InlineCode> if the time slot is considered
-          invalid, and the user should <i>not</i> be able to pick it.
+          the time slot is considered &quot;valid&quot;, and the user should be
+          able to pick it. And <InlineCode>false</InlineCode> if the time slot
+          is considered &quot;invalid&quot;, and the user should <i>not</i> be
+          able to pick it.
         </p>
 
         <p>
@@ -524,10 +531,13 @@ function App() {
         <SubTitle level={2}>Theming</SubTitle>
 
         <p>
-          You can customize the look of the{' '}
-          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component by
-          providing a <InlineCode>theme</InlineCode> prop. This value must be an
-          Object and may contain one or more of the following properties:
+          You can pass a theme Object as the <InlineCode>theme</InlineCode>{' '}
+          prop, to customize the look of the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component.
+        </p>
+
+        <p>
+          The theme Object may contain one or more of the following properties:
         </p>
 
         <TableWrapper>
@@ -645,7 +655,9 @@ function App() {
                 </TD>
                 <TD>String</TD>
                 <TD>#29aba4</TD>
-                <TD alignLeft>The color of success feedback messages.</TD>
+                <TD alignLeft>
+                  The color of &quot;success&quot; feedback messages.
+                </TD>
               </tr>
 
               <tr>
@@ -654,7 +666,9 @@ function App() {
                 </TD>
                 <TD>String</TD>
                 <TD>#eb7260</TD>
-                <TD alignLeft>The color of failed feedback messages.</TD>
+                <TD alignLeft>
+                  The color of &quot;failed&quot; feedback messages.
+                </TD>
               </tr>
             </tbody>
           </Table>
