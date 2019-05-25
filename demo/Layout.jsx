@@ -8,47 +8,46 @@ export const Main = styled.main`
   padding: 0;
 `;
 
-export const Header = styled.header`
+export const Header = styled.header``;
+
+export const Title = styled.h1`
   text-align: center;
+  font-size: 3.3em;
+  font-weight: 500;
 `;
 
-export const Content = styled.div`
+export const SubTitle = styled.h1`
+  font-size: 1.5em;
+  font-weight: 500;
+`;
+
+export const Article = styled.article`
   padding: 1em;
   font-size: 1.25em;
   line-height: 1.5;
 
-  @media (max-width: 520px) {
-    font-size: 1em;
-  }
-`;
-
-export const Section = styled.section`
-  width: 900px;
+  width: 750px;
   margin: auto;
 
   @media (max-width: 900px) {
     width: 100%;
     margin: 0;
   }
+
+  @media (max-width: 520px) {
+    font-size: 1em;
+  }
 `;
 
 export const Interactive = styled.div`
   margin: 3em 0;
-  font-size: 1rem;
-
-  @media (max-width: 520px) {
-    font-size: 0.8rem;
-  }
+  font-size: 0.8em;
 `;
 
 export const Caption = styled.div`
+  margin: 2em 0;
   text-align: center;
-  font-size: 0.9rem;
   color: #aaa;
-
-  @media (max-width: 520px) {
-    font-size: 0.7rem;
-  }
 `;
 
 export const Container = styled.div`
