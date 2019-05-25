@@ -136,3 +136,25 @@ function App() {
       dayValidator={dayValidator}
     />
   );`;
+
+export const codeExample8 = `function timeSlotValidator(slotTime) {
+  const eveningTime = new Date(
+    slotTime.getFullYear(),
+    slotTime.getMonth(),
+    slotTime.getDate(),
+    18,
+    0,
+    0
+  );
+
+  const isValid = slotTime.getTime() > eveningTime.getTime();
+  return isValid;
+}
+
+function App() {
+  return (
+    <DayTimePicker
+      timeSlotSizeMinutes={15}
+      timeSlotValidator={timeSlotValidator}
+    />
+  );`;

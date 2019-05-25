@@ -2,7 +2,7 @@
  * A validator function to determine if a day can be selected by the user or
  * not.
  *
- * @param {Date} calendarDay - Calendar day starting at "00:00:00" hours
+ * @param {Date} calendarDay - a calendar day, starting at "00:00:00" hours
  *
  * @return {Boolan} If the day is valid or not.
  */
@@ -21,13 +21,24 @@ export function dayValidator(calendarDay) {
   return isValid;
 }
 
-// "slotTime" is a Date Object
-// NOTE: currently not passed as prop
-export function timeValidator(slotTime) {
-  const validTimes = [
-    new Date('Tue May 21 2019 14:15:00 GMT+0200').getTime(),
-    new Date('Tue May 21 2019 15:15:00 GMT+0200').getTime()
-  ];
-  const isValid = validTimes.includes(slotTime.getTime());
+/**
+ * A validator function to determine if a time slot can be selected by the user
+ * or not.
+ *
+ * @param {Date} slotTime - a time slot
+ *
+ * @return {Boolan} If the time slot is valid or not.
+ */
+export function timeSlotValidator(slotTime) {
+  const eveningTime = new Date(
+    slotTime.getFullYear(),
+    slotTime.getMonth(),
+    slotTime.getDate(),
+    18,
+    0,
+    0
+  );
+
+  const isValid = slotTime.getTime() > eveningTime.getTime();
   return isValid;
 }
