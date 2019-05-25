@@ -54,12 +54,12 @@ function App() {
 
   return (
     <Main>
-      <Header>
-        <Title>React Date Time Picker</Title>
-      </Header>
-
       <Article>
-        <p>A React component to help with scheduling a day and time.</p>
+        <Header>
+          <Title>React Date Time Picker</Title>
+
+          <p>A React component to help with scheduling a day and time.</p>
+        </Header>
 
         <SubTitle>Rendering the component</SubTitle>
 
