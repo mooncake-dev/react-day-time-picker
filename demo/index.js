@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { render } from 'react-dom';
 
-import { Main } from './Layout';
+import { Main } from './components/Layout';
 
 import {
   Article,
@@ -10,11 +10,11 @@ import {
   SubTitle,
   Interactive,
   Caption
-} from './Article';
+} from './components/Article';
 
-import { CodeBlock, InlineCode } from './CodeBlock';
-import { TableWrapper, Table, TH, TD } from './Table';
-import { Container, DarkContainer } from './Container';
+import { CodeBlock, InlineCode } from './components/CodeBlock';
+import { TableWrapper, Table, TH, TD } from './components/Table';
+import { Container, DarkContainer } from './components/Container';
 
 import { fakeRequest } from './request';
 import { dayValidator, timeSlotValidator } from './validators';
