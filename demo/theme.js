@@ -1,12 +1,7 @@
-// NOTE: currently not passed as prop
 const theme = {
   primary: 'gold',
   secondary: 'slategrey',
-
-  // This should match the container background
-  // Text color is inherited from the container
-  background: '#333',
-
+  background: '#111', // This should match the container background
   buttons: {
     disabled: {
       color: '#333',
@@ -21,7 +16,6 @@ const theme = {
       }
     }
   },
-
   feedback: {
     success: {
       color: '#29aba4'
