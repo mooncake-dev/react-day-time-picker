@@ -111,3 +111,28 @@ export const codeExample6 = `function App() {
     />
   );
 }`;
+
+export const codeExample7 = `// "calendarDay" is a Date Object that starts at "00:00:00" hours, e.g.:
+// "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
+function dayValidator(calendarDay) {
+  const now = new Date();
+  const today = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    0,
+    0,
+    0
+  );
+
+  const isValid = calendarDay.getTime() >= today.getTime();
+  return isValid;
+}
+
+function App() {
+  return (
+    <DayTimePicker
+      timeSlotSizeMinutes={15}
+      dayValidator={dayValidator}
+    />
+  );`;

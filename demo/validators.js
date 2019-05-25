@@ -1,6 +1,11 @@
-// TODO: pass validator as prop
-// "calendarDay" is a Date Object that starts at "00:00:00" hours, e.g.:
-// "Sun Apr 28 2019 00:00:00 GMT+0200 (Central European Summer Time)"
+/**
+ * A validator function to determine if a day can be selected by the user or
+ * not.
+ *
+ * @param {Date} calendarDay - Calendar day starting at "00:00:00" hours
+ *
+ * @return {Boolan} If the day is valid or not.
+ */
 export function dayValidator(calendarDay) {
   const now = new Date();
   const today = new Date(
