@@ -18,7 +18,7 @@ import { CodeBlock, InlineCode } from './CodeBlock';
 import { TableWrapper, Table, TH, TD } from './Table';
 
 import { fakeRequest } from './request';
-// import { dayValidator, timeValidator } from './validators';
+import { dayValidator } from './validators';
 // import theme from './theme';
 
 import {
@@ -27,7 +27,8 @@ import {
   codeExample3,
   codeExample4,
   codeExample5,
-  codeExample6
+  codeExample6,
+  codeExample7
 } from './code-examples';
 
 import DayTimePicker from '../src';
@@ -90,6 +91,16 @@ function App() {
                   <a href="#showing-scheduling-feedback">
                     Showing scheduling feedback
                   </a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#advanced-usage">Advanced usage</a>
+
+              <ul>
+                <li>
+                  <a href="#using-the-day-validator">Using the day validator</a>
                 </li>
               </ul>
             </li>
@@ -361,7 +372,7 @@ function App() {
           You can simulate making an HTTP request with a function like this:
         </p>
 
-        <CodeBlock codeString={codeExample5} lang="jsx" />
+        <CodeBlock codeString={codeExample5} lang="js" />
 
         <p>
           You can then call it from the <InlineCode>onConfirm</InlineCode>{' '}
@@ -388,6 +399,51 @@ function App() {
             Schedule a date and time and open your console to see the fake
             response logged.
           </Caption>
+        </Interactive>
+
+        <SubTitle>Advanced usage</SubTitle>
+
+        <SubTitle level={2}>Using the day validator</SubTitle>
+
+        <p>
+          You can pass a validator function as the{' '}
+          <InlineCode>dayValidator</InlineCode> prop, to determine if a day can
+          be selected by the user or not.
+        </p>
+
+        <p>
+          The validator function is called by the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> when it renders
+          the days in the calendar view. The validator is called with a{' '}
+          <InlineCode>Date</InlineCode> Object, which represents a day in the
+          month. And it will be called for every day in the selected month.
+        </p>
+
+        <p>
+          The validator function should return <InlineCode>true</InlineCode> if
+          the day is considered valid, and the user should be able to pick it.
+          And <InlineCode>false</InlineCode> if the day is considered invalid,
+          and the user should <i>not</i> be able to pick it.
+        </p>
+
+        <p>
+          For example, if you want to prevent the user to be able to pick days
+          in the past, you can provide:
+        </p>
+
+        <CodeBlock codeString={codeExample7} lang="js" />
+
+        <Interactive>
+          <Container>
+            <h3>Pick a Day and Time</h3>
+
+            <DayTimePicker
+              timeSlotSizeMinutes={15}
+              dayValidator={dayValidator}
+            />
+          </Container>
+
+          <Caption>Past days can&apos;t be picked.</Caption>
         </Interactive>
       </Article>
     </Main>
