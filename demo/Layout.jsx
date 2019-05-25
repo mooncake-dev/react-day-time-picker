@@ -8,11 +8,14 @@ export const Main = styled.main`
   padding: 0;
 `;
 
-export const Header = styled.header``;
+export const Header = styled.header`
+  & p {
+    color: #666;
+  }
+`;
 
 export const Title = styled.h1`
-  text-align: center;
-  font-size: 3.3em;
+  font-size: 3em;
   font-weight: 500;
 `;
 
