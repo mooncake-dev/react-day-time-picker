@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const Article = styled.article`
   padding: 1em;
-  font-size: 1.25em;
+  font-size: 1.2em;
   line-height: 1.5;
 
   width: 750px;
@@ -27,12 +27,18 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
+  text-align: center;
   font-size: 2.8em;
   font-weight: 500;
 `;
 
 const SubHeading = styled.h2`
   font-size: 1.6em;
+  font-weight: 500;
+`;
+
+const SubSubHeading = styled.h3`
+  font-size: 1.4em;
   font-weight: 500;
 `;
 
@@ -49,21 +55,38 @@ const AnchorLink = styled.a`
   }
 `;
 
-export function SubTitle({ children }) {
+export function SubTitle({ level, children }) {
+  let _Component;
+  switch (level) {
+    case 1: {
+      _Component = SubHeading;
+      break;
+    }
+    case 2: {
+      _Component = SubSubHeading;
+      break;
+    }
+  }
+
   const anchor = children
     .toString()
     .toLowerCase()
     .replace(/\s/g, '-');
 
   return (
-    <SubHeading id={anchor}>
+    <_Component id={anchor}>
       <AnchorLink href={`#${anchor}`}>{children}</AnchorLink>
-    </SubHeading>
+    </_Component>
   );
 }
 
 SubTitle.propTypes = {
+  level: PropTypes.number.isRequired,
   children: PropTypes.string.isRequired
+};
+
+SubTitle.defaultProps = {
+  level: 1
 };
 
 export const Interactive = styled.div`

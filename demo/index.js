@@ -63,26 +63,43 @@ function App() {
 
           <ul>
             <li>
-              <a href="#rendering-the-component">Rendering the component</a>
+              <a href="#installation">Installation</a>
             </li>
 
             <li>
-              <a href="#getting-the-scheduled-day-and-time">
-                Getting the scheduled day and time
-              </a>
-            </li>
+              <a href="#basic-usage">Basic usage</a>
 
-            <li>
-              <a href="#showing-scheduling-feedback">
-                Showing scheduling feedback
-              </a>
+              <ul>
+                <li>
+                  <a href="#rendering-the-component">Rendering the component</a>
+                </li>
+
+                <li>
+                  <a href="#getting-the-scheduled-day-and-time">
+                    Getting the scheduled day and time
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#showing-scheduling-feedback">
+                    Showing scheduling feedback
+                  </a>
+                </li>
+              </ul>
             </li>
           </ul>
         </Header>
 
-        <SubTitle id="rendering-the-component">
-          Rendering the component
-        </SubTitle>
+        <SubTitle>Installation</SubTitle>
+
+        <CodeBlock
+          codeString="npm i @mooncake-dev/react-day-time-picker"
+          lang="shell"
+        />
+
+        <SubTitle>Basic usage</SubTitle>
+
+        <SubTitle level={2}>Rendering the component</SubTitle>
 
         <p>
           On the most basic level, you can render the{' '}
@@ -133,7 +150,7 @@ function App() {
           clicks on the schedule button.
         </p>
 
-        <SubTitle>Getting the scheduled day and time</SubTitle>
+        <SubTitle level={2}>Getting the scheduled day and time</SubTitle>
 
         <p>
           The <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component
@@ -152,7 +169,7 @@ function App() {
 
         <CodeBlock codeString={codeExample3} lang="jsx" />
 
-        <SubTitle>Showing scheduling feedback</SubTitle>
+        <SubTitle level={2}>Showing scheduling feedback</SubTitle>
 
         <p>
           When a user clicks on the schedule button, you can give them feedback
