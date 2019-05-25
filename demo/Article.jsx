@@ -1,3 +1,5 @@
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 export const Article = styled.article`
@@ -25,14 +27,44 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-  font-size: 3em;
+  font-size: 2.8em;
   font-weight: 500;
 `;
 
-export const SubTitle = styled.h1`
-  font-size: 1.5em;
+const SubHeading = styled.h2`
+  font-size: 1.6em;
   font-weight: 500;
 `;
+
+const AnchorLink = styled.a`
+  color: inherit;
+  text-decoration: none;
+
+  :visited {
+    color: inherit;
+  }
+
+  :hover {
+    cursor: pointer;
+  }
+`;
+
+export function SubTitle({ children }) {
+  const anchor = children
+    .toString()
+    .toLowerCase()
+    .replace(/\s/g, '-');
+
+  return (
+    <SubHeading id={anchor}>
+      <AnchorLink href={`#${anchor}`}>{children}</AnchorLink>
+    </SubHeading>
+  );
+}
+
+SubTitle.propTypes = {
+  children: PropTypes.string.isRequired
+};
 
 export const Interactive = styled.div`
   margin: 3em 0;
