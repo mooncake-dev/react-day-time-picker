@@ -18,7 +18,7 @@ import { CodeBlock, InlineCode } from './CodeBlock';
 import { TableWrapper, Table, TH, TD } from './Table';
 
 import { fakeRequest } from './request';
-import { dayValidator } from './validators';
+import { dayValidator, timeSlotValidator } from './validators';
 // import theme from './theme';
 
 import {
@@ -28,7 +28,8 @@ import {
   codeExample4,
   codeExample5,
   codeExample6,
-  codeExample7
+  codeExample7,
+  codeExample8
 } from './code-examples';
 
 import DayTimePicker from '../src';
@@ -101,6 +102,12 @@ function App() {
               <ul>
                 <li>
                   <a href="#using-the-day-validator">Using the day validator</a>
+                </li>
+
+                <li>
+                  <a href="#using-the-time-slot-validator">
+                    Using the time slot validator
+                  </a>
                 </li>
               </ul>
             </li>
@@ -242,7 +249,7 @@ function App() {
 
               <tr>
                 <TD>
-                  <InlineCode>timeValidator</InlineCode>
+                  <InlineCode>timeSlotValidator</InlineCode>
                 </TD>
                 <TD>Function</TD>
                 <TD>No</TD>
@@ -431,7 +438,7 @@ function App() {
           in the past, you can provide:
         </p>
 
-        <CodeBlock codeString={codeExample7} lang="js" />
+        <CodeBlock codeString={codeExample7} lang="jsx" />
 
         <Interactive>
           <Container>
@@ -444,6 +451,51 @@ function App() {
           </Container>
 
           <Caption>Past days can&apos;t be picked.</Caption>
+        </Interactive>
+
+        <SubTitle level={2}>Using the time slot validator</SubTitle>
+
+        <p>
+          You can pass a validator function as the{' '}
+          <InlineCode>timeSlotValidator</InlineCode> prop, to determine if a
+          time slot can be selected by the user or not.
+        </p>
+
+        <p>
+          The validator function is called by the{' '}
+          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> when it renders
+          the time slots in the calendar view. The validator is called with a{' '}
+          <InlineCode>Date</InlineCode> Object, which represents a time slot in
+          a picked day. And it will be called for every available time slot,
+          depending on the size of the{' '}
+          <InlineCode>timeSlotSizeMinutes</InlineCode> prop.
+        </p>
+
+        <p>
+          The validator function should return <InlineCode>true</InlineCode> if
+          the time slot is considered valid, and the user should be able to pick
+          it. And <InlineCode>false</InlineCode> if the time slot is considered
+          invalid, and the user should <i>not</i> be able to pick it.
+        </p>
+
+        <p>
+          For example, if you want the user to only be able to pick time slots
+          in the evening, you can provide:
+        </p>
+
+        <CodeBlock codeString={codeExample8} lang="jsx" />
+
+        <Interactive>
+          <Container>
+            <h3>Pick a Day and Time</h3>
+
+            <DayTimePicker
+              timeSlotSizeMinutes={15}
+              timeSlotValidator={timeSlotValidator}
+            />
+          </Container>
+
+          <Caption>Only time slots in the evening can be picked.</Caption>
         </Interactive>
       </Article>
     </Main>

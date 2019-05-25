@@ -13,7 +13,7 @@ import TimeSlots from './time-slots';
 
 function DayTimePicker({
   dayValidator,
-  timeValidator,
+  timeSlotValidator,
   timeSlotSizeMinutes,
   isLoading,
   isDone,
@@ -72,7 +72,7 @@ function DayTimePicker({
             <TimeSlots
               pickedDay={pickedDay}
               slotSizeMinutes={timeSlotSizeMinutes}
-              validator={timeValidator}
+              validator={timeSlotValidator}
               pickTime={handlePickTime}
             />
           </Popup>
@@ -126,7 +126,7 @@ function DayTimePicker({
 
 DayTimePicker.propTypes = {
   dayValidator: PropTypes.func,
-  timeValidator: PropTypes.func,
+  timeSlotValidator: PropTypes.func,
   timeSlotSizeMinutes: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isDone: PropTypes.bool.isRequired,
