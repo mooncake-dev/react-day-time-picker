@@ -1,6 +1,6 @@
 export const codeExample1 = `import React from 'react';
 import { render } from 'react-dom';
-import DayTimePicker from '@mooncake/react-day-time-picker';
+import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 
 function App() {
   return <DayTimePicker timeSlotSizeMinutes={15}  />;
@@ -12,7 +12,7 @@ render(<App />, target);`;
 export const codeExample2 = `import React from 'react';
 import { render } from 'react-dom';
 import styled from 'styled-components';
-import DayTimePicker from '@mooncake/react-day-time-picker';
+import DayTimePicker from '@mooncake-dev/react-day-time-picker';
 
 const Container = styled.div\`
   width: 475px;
@@ -25,9 +25,8 @@ const Container = styled.div\`
   text-align: center;
   box-shadow: 0 2px 4px #00000018;
 
-  @media (max-width: 460px) {
+  @media (max-width: 520px) {
     width: 100%;
-    border-radius: 0;
   }
 \`;
 
@@ -44,13 +43,11 @@ const target = document.getElementById('root');
 render(<App />, target);`;
 
 export const codeExample3 = `function App() {
-  const handleScheduled = date => console.log('scheduled: ', date);
+  const handleScheduled = dateTime => {
+    console.log('scheduled: ', dateTime);
+  };
 
-  return (
-    <DayTimePicker
-      onConfirm={handleScheduled}
-    />
-  );
+  return <DayTimePicker onConfirm={handleScheduled} />;
 }`;
 
 export const codeExample4 = `function App() {
