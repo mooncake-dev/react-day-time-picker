@@ -62,7 +62,7 @@ function App() {
     <Main>
       <Article>
         <Header>
-          <Title>React Date Time Picker</Title>
+          <Title>React Day Time Picker</Title>
 
           <ByLine>
             View on{' '}
@@ -361,7 +361,7 @@ function App() {
           The handler function is called by the{' '}
           <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> component when a
           user clicks the schedule button. The handler is called with a{' '}
-          <InlineCode>Date</InlineCode> Object, which represents the picked date
+          <InlineCode>Date</InlineCode> Object, which represents the picked day
           and time.
         </p>
 
@@ -431,7 +431,7 @@ function App() {
           </Container>
 
           <Caption>
-            Schedule a date and time, and open your console to see the fake
+            Schedule a day and time, and open your console to see the fake
             response logged.
           </Caption>
         </Interactive>
