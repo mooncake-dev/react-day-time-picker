@@ -141,6 +141,20 @@ function App() {
           lang="shell"
         />
 
+        <p>
+          <i>
+            Note that there&apos;s a peer dependency requirement on{' '}
+            <a
+              href="https://reactjs.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              React
+            </a>
+            .
+          </i>
+        </p>
+
         <SubTitle>API</SubTitle>
 
         <p>The following props are exposed:</p>
