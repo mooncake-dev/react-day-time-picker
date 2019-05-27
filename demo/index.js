@@ -96,6 +96,10 @@ function App() {
               </li>
 
               <li>
+                <a href="#setting-a-time-slot-size">Setting a time slot size</a>
+              </li>
+
+              <li>
                 <a href="#getting-the-scheduled-day-and-time">
                   Getting the scheduled day and time
                 </a>
@@ -162,8 +166,9 @@ function App() {
                 <TD>Yes</TD>
                 <TD>-</TD>
                 <TD alignLeft>
-                  The size of the time slots a user can pick, after picking a
-                  day.
+                  The{' '}
+                  <a href="#setting-a-time-slot-size">size of the time slots</a>{' '}
+                  a user can pick, after picking a day.
                 </TD>
               </tr>
 
@@ -308,11 +313,12 @@ function App() {
         <CodeBlock codeString={codeExample1} lang="jsx" />
 
         <p>
-          This will render a basic calendar, where a day and time can be picked:
+          This will render a basic calendar, where a day and time can be picked
+          by the user:
         </p>
 
         <Interactive>
-          <DayTimePicker timeSlotSizeMinutes={15} />
+          <DayTimePicker timeSlotSizeMinutes={60} />
 
           <Caption>
             Go ahead and click around, but it&apos;s a semi-functional
@@ -320,6 +326,13 @@ function App() {
             because not all required props are passed yet.
           </Caption>
         </Interactive>
+
+        <p>
+          The <InlineCode>timeSlotSizeMinutes</InlineCode> prop
+          &quot;splits&quot; a day into as many slots as &quot;fit&quot; in that
+          day. Learn more in{' '}
+          <a href="#setting-a-time-slot-size">setting a time slot size</a>.
+        </p>
 
         <p>
           You can style the{' '}
@@ -347,6 +360,41 @@ function App() {
         <p>
           Read ahead to learn how to get the picked day and time, after a user
           clicks on the schedule button.
+        </p>
+
+        <SubTitle level={2}>Setting a time slot size</SubTitle>
+
+        <p>
+          After a user picks a day, they will be able to pick a time. You can
+          control from how many time slots a user can pick, by changing the the{' '}
+          <InlineCode>timeSlotSizeMinutes</InlineCode> prop.
+        </p>
+
+        <p>
+          The <InlineCode>timeSlotSizeMinutes</InlineCode> prop
+          &quot;splits&quot; a day into as many time slots as &quot;fit&quot; in
+          that day.
+        </p>
+
+        <p>
+          For example, if the <InlineCode>timeSlotSizeMinutes</InlineCode> is
+          set to <InlineCode>60</InlineCode> minutes, 24 time slots will be
+          generated for a &quot;full&quot; day (from 00:00 to 23:00).
+        </p>
+
+        <p>
+          But if the current time is 13:31, only 10 time slots will be generated
+          in the same day (from 14:00 to 23:00). Because the time is
+          &quot;padded&quot; to the next available time slot in the present
+          (excluding time slots in the past).
+        </p>
+
+        <p>
+          More advanced options are available to control which time slots a user
+          can pick, by{' '}
+          <a href="#using-the-time-slot-validator">
+            using the time slot validator
+          </a>
         </p>
 
         <SubTitle level={2}>Getting the scheduled day and time</SubTitle>
