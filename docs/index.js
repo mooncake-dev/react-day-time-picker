@@ -18,7 +18,7 @@ import { TableWrapper, Table, TH, TD } from './components/Table';
 import { Container, DarkContainer } from './components/Container';
 
 import { fakeRequest } from './request';
-import { dayValidator, timeSlotValidator } from './validators';
+import { timeSlotValidator } from './validators';
 import theme from './theme';
 
 import {
@@ -29,8 +29,7 @@ import {
   codeExample5,
   codeExample6,
   codeExample7,
-  codeExample8,
-  codeExample9
+  codeExample8
 } from './code-examples';
 
 import DayTimePicker from '../src';
@@ -84,6 +83,10 @@ function App() {
           </li>
 
           <li>
+            <a href="#design-decisions">Design decisions</a>
+          </li>
+
+          <li>
             <a href="#api">API</a>
           </li>
 
@@ -118,10 +121,6 @@ function App() {
 
             <ul>
               <li>
-                <a href="#using-the-day-validator">Using the day validator</a>
-              </li>
-
-              <li>
                 <a href="#using-the-time-slot-validator">
                   Using the time slot validator
                 </a>
@@ -153,6 +152,22 @@ function App() {
             </a>
             .
           </i>
+        </p>
+
+        <SubTitle>Design decisions</SubTitle>
+
+        <p>
+          This component <b>does not allow</b> a user to pick <i>past</i> days
+          and times.
+        </p>
+
+        <p>
+          Past months and days can be viewed, but can <b>not</b> be selected by
+          the user.
+        </p>
+
+        <p>
+          Past time slots will <b>not</b> be rendered at all.
         </p>
 
         <SubTitle>API</SubTitle>
@@ -267,19 +282,6 @@ function App() {
                 <TD>No</TD>
                 <TD>Your event has been scheduled!</TD>
                 <TD alignLeft>Custom text to show when scheduling is done.</TD>
-              </tr>
-
-              <tr>
-                <TD alignLeft>
-                  <InlineCode>dayValidator</InlineCode>
-                </TD>
-                <TD>Function</TD>
-                <TD>No</TD>
-                <TD>-</TD>
-                <TD alignLeft>
-                  A validator function to determine if a day can be picked by
-                  the user or not.
-                </TD>
               </tr>
 
               <tr>
@@ -500,50 +502,6 @@ function App() {
 
         <SubTitle>Advanced usage</SubTitle>
 
-        <SubTitle level={2}>Using the day validator</SubTitle>
-
-        <p>
-          You can pass a validator function as the{' '}
-          <InlineCode>dayValidator</InlineCode> prop, to determine if a day can
-          be picked by the user or not.
-        </p>
-
-        <p>
-          The validator function is called by the{' '}
-          <InlineCode>&#60;DayTimePicker&#47;&#62;</InlineCode> when it renders
-          the days in the calendar view. The validator is called with a{' '}
-          <InlineCode>Date</InlineCode> Object, which represents a day in the
-          month. And it will be called for every day in the selected month.
-        </p>
-
-        <p>
-          The validator function should return <InlineCode>true</InlineCode> if
-          the day is considered &quot;valid&quot;, and the user should be able
-          to pick it. And <InlineCode>false</InlineCode> if the day is
-          considered &quot;invalid&quot;, and the user should <i>not</i> be able
-          to pick it.
-        </p>
-
-        <p>
-          For example, if you want to prevent the user to be able to pick days
-          in the past, you can provide:
-        </p>
-
-        <CodeBlock codeString={codeExample7} lang="jsx" />
-
-        <Interactive>
-          <Container>
-            <h3>Pick a Day and Time</h3>
-
-            <DayTimePicker
-              timeSlotSizeMinutes={15}
-              dayValidator={dayValidator}
-            />
-          </Container>
-
-          <Caption>Past days can&apos;t be picked.</Caption>
-        </Interactive>
-
         <SubTitle level={2}>Using the time slot validator</SubTitle>
 
         <p>
@@ -575,7 +533,7 @@ function App() {
           in the evening, you can provide:
         </p>
 
-        <CodeBlock codeString={codeExample8} lang="jsx" />
+        <CodeBlock codeString={codeExample7} lang="jsx" />
 
         <Interactive>
           <Container>
@@ -740,7 +698,7 @@ function App() {
           For example, to use a dark theme, provide the following theme Object:
         </p>
 
-        <CodeBlock codeString={codeExample9} lang="jsx" />
+        <CodeBlock codeString={codeExample8} lang="jsx" />
 
         <Interactive>
           <DarkContainer>

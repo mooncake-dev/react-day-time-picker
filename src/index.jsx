@@ -11,8 +11,9 @@ import { Success, Failed } from './Feedback';
 import Calendar from './calendar';
 import TimeSlots from './time-slots';
 
+import { preventPastDays } from './validators';
+
 function DayTimePicker({
-  dayValidator,
   timeSlotValidator,
   timeSlotSizeMinutes,
   isLoading,
@@ -56,7 +57,7 @@ function DayTimePicker({
   return (
     <ThemeProvider theme={theme}>
       <PopupWrapper>
-        <Calendar validator={dayValidator} pickDay={handlePickDay} />
+        <Calendar validator={preventPastDays} pickDay={handlePickDay} />
 
         {showPickTime && (
           <Popup>
@@ -125,7 +126,6 @@ function DayTimePicker({
 }
 
 DayTimePicker.propTypes = {
-  dayValidator: PropTypes.func,
   timeSlotValidator: PropTypes.func,
   timeSlotSizeMinutes: PropTypes.number.isRequired,
   isLoading: PropTypes.bool.isRequired,
