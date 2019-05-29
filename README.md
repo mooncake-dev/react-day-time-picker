@@ -2,7 +2,7 @@
 
 A React component to help with scheduling a day and time.
 
-For documentation see the [website](https://mooncake-react-day-time-picker-demo.netlify.com/).
+For documentation see the [website](https://react-day-time-picker.netlify.com/).
 
 ## Running Locally
 
