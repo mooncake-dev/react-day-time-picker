@@ -8,13 +8,11 @@
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:format": "npm run lint -- --fix",
     "start": "rimraf .cache dev && parcel docs/index.html --out-dir dev",
-    "build-docs": "parcel build docs/index.html",
-    "build-lib": "parcel build src/index.jsx --out-dir lib",
-    "prepublishOnly": "npm run build-lib"
+    "build-docs": "parcel build docs/index.html"
   },
-  "main": "lib/index.js",
+  "main": "src/index.jsx",
   "files": [
-    "lib"
+    "src"
   ],
   "repository": {
     "type": "git",
