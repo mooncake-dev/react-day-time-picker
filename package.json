@@ -1,6 +1,6 @@
 {
   "name": "@mooncake-dev/react-day-time-picker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A React component to help with scheduling a day and time.",
   "scripts": {
     "test": "jest",
